@@ -12,8 +12,14 @@
         android:theme="@style/Theme.Trasholution"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".ui.mainmenu.prediction.PredictAndSolutionActivity"
+            android:exported="false"
+            android:label="PredictAndSolutionActivity"
+            android:theme="@style/Theme.Trasholution.NoActionBar" />
+        <activity
+            android:name=".ui.mainmenu.MainActivity"
+            android:exported="true"
+            android:label="MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
