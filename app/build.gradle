@@ -7,6 +7,9 @@ android {
     namespace 'capstone.project.trasholution'
     compileSdk 33
 
+    buildFeatures{
+        viewBinding true
+    }
     defaultConfig {
         applicationId "capstone.project.trasholution"
         minSdk 21
