@@ -61,21 +61,16 @@ class CameraActivity : AppCompatActivity() {
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    //ssk neh, something wrong, check storyapp + mybroadcastreceiver
-//                    val intent = Intent()
-//
-//                    setResult(PredictAndSolutionActivity.CAMERA_X_RESULT, intent)
-
                     val goIntent = Intent(this@CameraActivity, PredictAndSolutionActivity::class.java)
                     goIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    intent.putExtra("picture", photoFile)
-                    intent.putExtra(
-                        "isBackCamera",
-                        cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
-                    )
-                    startActivity(goIntent)
 
+                    goIntent.putExtra(PredictAndSolutionActivity.PICTURE, photoFile)
+                    goIntent.putExtra(PredictAndSolutionActivity.ISBACK_CAMERA, cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA)
+
+                    startActivity(goIntent)
                     finish()
+
+
                 }
             }
         )

@@ -21,15 +21,12 @@ import capstone.project.trasholution.databinding.ActivityMainBinding
 import capstone.project.trasholution.ui.mainmenu.article.ArticleFragment
 import capstone.project.trasholution.ui.mainmenu.collector.CollectorFragment
 import capstone.project.trasholution.ui.mainmenu.prediction.CameraActivity
-import capstone.project.trasholution.ui.mainmenu.prediction.PredictAndSolutionActivity
-import capstone.project.trasholution.ui.mainmenu.prediction.PredictAndSolutionActivity.Companion.CAMERA_X_RESULT
 import capstone.project.trasholution.ui.profile.ProfileActivity
 import rotateFile
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
     private var binding: ActivityMainBinding? = null
-    private var getFile: File? = null
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
@@ -87,36 +84,38 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding?.fab?.setOnClickListener{
-            startCameraX()
+            val intent = Intent(this, CameraActivity::class.java)
+            startActivity(intent)
         }
     }
 
     private fun startCameraX() {
         val intent = Intent(this, CameraActivity::class.java)
-        launcherIntentCameraX.launch(intent)
+        startActivity(intent)
+//        launcherIntentCameraX.launch(intent)
     }
 
-    private val launcherIntentCameraX = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) {
-        if (it.resultCode == CAMERA_X_RESULT) {
-            val myFile = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                it.data?.getSerializableExtra("picture", File::class.java)
-            } else {
-                @Suppress("DEPRECATION")
-                it.data?.getSerializableExtra("picture")
-            } as? File
-
-            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
-
-            myFile?.let { file ->
-                rotateFile(file, isBackCamera)
-                getFile = file
-
-//                binding.previewImageView.setImageBitmap(BitmapFactory.decodeFile(file.path))
-            }
-        }
-    }
+//    private val launcherIntentCameraX = registerForActivityResult(
+//        ActivityResultContracts.StartActivityForResult()
+//    ) {
+//        if (it.resultCode == CAMERA_X_RESULT) {
+//            val myFile = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+//                it.data?.getSerializableExtra("picture", File::class.java)
+//            } else {
+//                @Suppress("DEPRECATION")
+//                it.data?.getSerializableExtra("picture")
+//            } as? File
+//
+//            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
+//
+//            myFile?.let { file ->
+//                rotateFile(file, isBackCamera)
+//                getFile = file
+//
+////                binding.previewImageView.setImageBitmap(BitmapFactory.decodeFile(file.path))
+//            }
+//        }
+//    }
 
     private fun setupView() {
         binding?.bottomNavigationView?.background = null

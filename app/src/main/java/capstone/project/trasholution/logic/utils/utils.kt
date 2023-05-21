@@ -14,6 +14,7 @@ import capstone.project.trasholution.R
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.min
 
 private const val FILENAME_FORMAT = "dd-MMM-yyyy"
 val timeStamp: String = SimpleDateFormat(
@@ -60,6 +61,7 @@ fun uriToFile(selectedImg: Uri, context: Context): File {
 fun rotateBitmap(bitmap: Bitmap, isBackCamera: Boolean = false): Bitmap {
     val matrix = Matrix()
     return if (isBackCamera) {
+
         matrix.postRotate(90f)
         Bitmap.createBitmap(
             bitmap,
@@ -83,6 +85,15 @@ fun rotateBitmap(bitmap: Bitmap, isBackCamera: Boolean = false): Bitmap {
             true
         )
     }
+}
+
+fun cropFile(file: File){
+    val bitmap = BitmapFactory.decodeFile(file.path)
+    val cropSize = min(bitmap.width, bitmap.height)
+    val startX = ((bitmap.width - cropSize) / 2)
+    val startY = ((bitmap.height - cropSize) / 2)
+    val result = Bitmap.createBitmap(bitmap, startX, startY, cropSize, cropSize)
+    result.compress(Bitmap.CompressFormat.JPEG, 100, FileOutputStream(file))
 }
 
 fun rotateFile(file: File, isBackCamera: Boolean = false) {
