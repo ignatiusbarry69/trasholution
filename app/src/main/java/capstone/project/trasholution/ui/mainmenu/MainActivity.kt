@@ -89,34 +89,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun startCameraX() {
-        val intent = Intent(this, CameraActivity::class.java)
-        startActivity(intent)
-//        launcherIntentCameraX.launch(intent)
-    }
-
-//    private val launcherIntentCameraX = registerForActivityResult(
-//        ActivityResultContracts.StartActivityForResult()
-//    ) {
-//        if (it.resultCode == CAMERA_X_RESULT) {
-//            val myFile = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-//                it.data?.getSerializableExtra("picture", File::class.java)
-//            } else {
-//                @Suppress("DEPRECATION")
-//                it.data?.getSerializableExtra("picture")
-//            } as? File
-//
-//            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
-//
-//            myFile?.let { file ->
-//                rotateFile(file, isBackCamera)
-//                getFile = file
-//
-////                binding.previewImageView.setImageBitmap(BitmapFactory.decodeFile(file.path))
-//            }
-//        }
-//    }
-
     private fun setupView() {
         binding?.bottomNavigationView?.background = null
         binding?.bottomNavigationView?.menu?.getItem(1)?.isEnabled = false

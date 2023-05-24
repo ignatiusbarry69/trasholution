@@ -76,6 +76,7 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLoginSubmit.setOnClickListener { login() }
         binding.btnSignUp.setOnClickListener {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
         }
         playAnimation()

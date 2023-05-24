@@ -10,6 +10,7 @@ import android.text.TextWatcher
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.ContentInfoCompat.Flags
 import capstone.project.trasholution.R
 import capstone.project.trasholution.databinding.ActivityRegisterBinding
 import capstone.project.trasholution.logic.remote.UserResponse
@@ -72,7 +73,9 @@ class RegisterActivity : AppCompatActivity() {
         binding.btnRegisterSubmit.setOnClickListener { register() }
         binding.btnSignIn.setOnClickListener {
             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
+            finish()
         }
 
         playAnimation()
