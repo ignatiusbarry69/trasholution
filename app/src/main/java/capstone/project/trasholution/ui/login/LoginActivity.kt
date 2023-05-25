@@ -73,7 +73,16 @@ class LoginActivity : AppCompatActivity() {
                 // Do nothing
             }
         })
-        binding.btnLoginSubmit.setOnClickListener { login() }
+
+        // iki mek wingi tak jebol ning kene
+
+//        binding.btnLoginSubmit.setOnClickListener { login() }
+        binding.btnLoginSubmit.isEnabled = true
+        binding.btnLoginSubmit.setOnClickListener {
+
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
         binding.btnSignUp.setOnClickListener {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
