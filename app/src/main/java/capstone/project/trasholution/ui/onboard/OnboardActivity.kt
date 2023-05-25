@@ -1,5 +1,6 @@
 package capstone.project.trasholution.ui.onboard
 
+
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.commit
 import androidx.viewpager2.widget.ViewPager2
 import capstone.project.trasholution.R
@@ -27,16 +29,6 @@ class OnboardActivity : AppCompatActivity() {
     }
 
     private fun setupView(){
-//        val fragmentManager = supportFragmentManager
-//        val onboardFragment = OnboardFragment()
-//        val fragment = fragmentManager.findFragmentByTag(OnboardFragment::class.java.simpleName)
-//
-//        if (fragment !is OnboardFragment) {
-//            fragmentManager.commit {
-//                add(R.id.frame_container2, onboardFragment, OnboardFragment::class.java.simpleName)
-//            }
-//        }
-
         //view pager 2
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
         val viewPager: ViewPager2 = binding!!.viewPager
@@ -45,52 +37,60 @@ class OnboardActivity : AppCompatActivity() {
         //tab layout
         val tabs: TabLayout = binding!!.tabs
 
-//        tabs.selectTab(binding?.tabs?.getTabAt(1))
-//        val selectedPosition = tabs.selectedTabPosition
+        binding?.btnLeft?.text = "SKIP"
+        binding?.btnRight?.text = "NEXT"
 
         TabLayoutMediator(tabs, viewPager){tab, position ->
             tab.text = position.toString()
         }.attach()
 
-//        if (selectedPosition == 0) {
-//            binding?.btnLeft?.text = "SKIP"
-//            binding?.btnLeft?.setOnClickListener {
-//                val intent = Intent(this, LoginActivity::class.java)
-//                startActivity(intent)
-//            }
-//            binding?.btnRight?.text = "NEXT"
-//            binding?.btnRight?.setOnClickListener {
-//                val tabLayout = this.findViewById(R.id.tabs) as TabLayout
-//                val tab = tabLayout.getTabAt(1)
-//                tab!!.select()
-//            }
-//        }else if(selectedPosition == 1){
-//            binding?.btnLeft?.text = "BACK"
-//            binding?.btnLeft?.setOnClickListener {
-//                val tabLayout = this.findViewById(R.id.tabs) as TabLayout
-//                val tab = tabLayout.getTabAt(0)
-//                tab!!.select()
-//            }
-//            binding?.btnRight?.text = "NEXT"
-//            binding?.btnRight?.setOnClickListener {
-//                val tabLayout = this.findViewById(R.id.tabs) as TabLayout
-//                val tab = tabLayout.getTabAt(2)
-//                tab!!.select()
-//            }
-//
-//        }else{
-//            binding?.btnLeft?.text = selectedPosition.toString()
-//            binding?.btnLeft?.setOnClickListener {
-//                val tabLayout = this.findViewById(R.id.tabs) as TabLayout
-//                val tab = tabLayout.getTabAt(1)
-//                tab!!.select()
-//            }
-//            binding?.btnRight?.text = "START"
-//            binding?.btnRight?.setOnClickListener {
-//                val intent = Intent(this, LoginActivity::class.java)
-//                startActivity(intent)
-//            }
-//        }
+        tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                val position = tab.position // Get the selected tab position
+
+                // Update button behavior based on the selected tab position
+                if (position == 0) {
+                    binding?.btnLeft?.text = "SKIP"
+                    binding?.btnRight?.text = "NEXT"
+                } else if (position == 1) {
+                    binding?.btnLeft?.text = "BACK"
+                    binding?.btnRight?.text = "NEXT"
+                } else {
+                    binding?.btnLeft?.text = "BACK"
+                    binding?.btnRight?.text = "START"
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+                // Not needed for your implementation
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {
+                // Not needed for your implementation
+            }
+        })
+
+        // Set click listeners for the buttons
+        binding?.btnLeft?.setOnClickListener {
+            val previousTab = tabs.getTabAt(tabs.selectedTabPosition - 1)
+            previousTab?.select()
+
+            if (binding?.btnLeft?.text == "SKIP") {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        binding?.btnRight?.setOnClickListener {
+            val nextTab = tabs.getTabAt(tabs.selectedTabPosition + 1)
+            nextTab?.select()
+
+            if (binding?.btnRight?.text == "START") {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
+
+        }
 
         supportActionBar?.elevation = 0f
 

@@ -6,28 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.onboard.OnboardFragment">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_left"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
-        app:cornerRadius="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Button" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_right"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
-        app:cornerRadius="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        tools:text="Button" />
-
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="212dp"
