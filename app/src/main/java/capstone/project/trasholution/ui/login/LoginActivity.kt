@@ -74,15 +74,10 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
-        // iki mek wingi tak jebol ning kene
 
-//        binding.btnLoginSubmit.setOnClickListener { login() }
-        binding.btnLoginSubmit.isEnabled = true
-        binding.btnLoginSubmit.setOnClickListener {
 
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
+        binding.btnLoginSubmit.setOnClickListener { login() }
+
         binding.btnSignUp.setOnClickListener {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -116,8 +111,6 @@ class LoginActivity : AppCompatActivity() {
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         startActivity(intent)
 
-//                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
-//                        startActivity(intent)
                     }
                 } else {
                     showLoading(false)
