@@ -12,4 +12,7 @@
     <string name="name">Name</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcomeLottie">Welcome to Trasholution,
+your daily waste solution and recycling advisor</string>
+    <string name="logout">logout</string>
 </resources>
