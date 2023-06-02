@@ -75,7 +75,6 @@ class OnboardActivity : AppCompatActivity() {
 
             if (binding?.btnLeft?.text == "SKIP") {
                 val intent = Intent(this, LoginActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
                 finish()
             } else {
@@ -87,7 +86,6 @@ class OnboardActivity : AppCompatActivity() {
         binding?.btnRight?.setOnClickListener {
             if (binding?.btnRight?.text == "START") {
                 val intent = Intent(this, LoginActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
                 finish()
             } else {

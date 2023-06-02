@@ -6,9 +6,20 @@
     tools:context=".ui.mainmenu.article.ArticleFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_to_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ini fragment artikel" />
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_article"
+            android:layout_width="403dp"
+            android:layout_height="735dp"
+            android:layout_marginTop="50dp"
+            tools:listitem="@layout/item_artikel"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 </FrameLayout>

@@ -9,9 +9,11 @@ import android.graphics.Matrix
 import android.net.Uri
 import android.os.Environment
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import capstone.project.trasholution.R
 import java.io.*
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.min
@@ -21,6 +23,13 @@ val timeStamp: String = SimpleDateFormat(
     FILENAME_FORMAT,
     Locale.US
 ).format(System.currentTimeMillis())
+
+fun TextView.setLocalDateFormat(timestamp: String) {
+    val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
+    val date = sdf.parse(timestamp) as Date
+    val formattedDate = DateFormat.getDateInstance(DateFormat.FULL).format(date)
+    this.text = formattedDate
+}
 
 fun showLoading(state: Boolean, view: View) {
     view.visibility = if (state) View.VISIBLE else View.GONE
