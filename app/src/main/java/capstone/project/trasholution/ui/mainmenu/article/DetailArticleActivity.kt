@@ -14,6 +14,8 @@ class DetailArticleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailArticleBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setupView()
     }
 
     private fun setupView(){

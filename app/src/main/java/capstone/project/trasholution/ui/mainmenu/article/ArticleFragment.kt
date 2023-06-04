@@ -51,7 +51,6 @@ class ArticleFragment : Fragment() {
             }
         )
         mainViewModel.getListArtikel.observe(requireActivity()) {
-            Log.d("storyilang", (it == null).toString())
             artikelAdapter.submitData(lifecycle, it)
         }
 
