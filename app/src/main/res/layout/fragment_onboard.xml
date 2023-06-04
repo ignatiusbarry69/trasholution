@@ -6,16 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".ui.onboard.OnboardFragment">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="212dp"
-        android:layout_height="208dp"
-        android:layout_marginBottom="428dp"
-        android:src="@drawable/minji"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/onBoardLottie"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        app:lottie_autoPlay="true"
+        app:lottie_speed="0.25"
+        app:lottie_loop="true"/>
+
 
     <TextView
         android:id="@+id/textView"

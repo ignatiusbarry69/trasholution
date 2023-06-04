@@ -72,24 +72,26 @@ class OnboardActivity : AppCompatActivity() {
 
         // Set click listeners for the buttons
         binding?.btnLeft?.setOnClickListener {
-            val previousTab = tabs.getTabAt(tabs.selectedTabPosition - 1)
-            previousTab?.select()
 
             if (binding?.btnLeft?.text == "SKIP") {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
+                finish()
+            } else {
+                val previousTab = tabs.getTabAt(tabs.selectedTabPosition - 1)
+                previousTab?.select()
             }
         }
 
         binding?.btnRight?.setOnClickListener {
-            val nextTab = tabs.getTabAt(tabs.selectedTabPosition + 1)
-            nextTab?.select()
-
             if (binding?.btnRight?.text == "START") {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
+                finish()
+            } else {
+                val nextTab = tabs.getTabAt(tabs.selectedTabPosition + 1)
+                nextTab?.select()
             }
-
         }
 
         supportActionBar?.elevation = 0f

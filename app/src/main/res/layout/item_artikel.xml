@@ -1,0 +1,84 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="7dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/minji"
+        android:backgroundTint="@color/white"
+
+        android:clipToPadding="false"
+        android:elevation="2dp"
+        android:padding="20dp"
+        >
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/img_waste"
+            android:layout_width="380dp"
+            android:layout_height="175dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/processed_waste"
+            android:scaleType="centerCrop"
+            android:transitionName="image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_item_name"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_item_description"
+            android:layout_width="338dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:transitionName="description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.414"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_waste"
+            tools:text="@string/lorem" />
+
+        <TextView
+            android:id="@+id/tv_item_name"
+            android:layout_width="335dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+
+            android:transitionName="name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/username" />
+
+        <TextView
+            android:id="@+id/createdAt"
+            android:layout_width="300dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:transitionName="date"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.03"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_item_description"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="@string/created_date" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

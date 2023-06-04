@@ -1,7 +1,9 @@
 package capstone.project.trasholution.ui.mainmenu
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.os.Build
@@ -28,40 +30,13 @@ import java.io.File
 class MainActivity : AppCompatActivity() {
     private var binding: ActivityMainBinding? = null
 
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            if (!allPermissionsGranted()) {
-                Toast.makeText(
-                    this,
-                    "Tidak mendapatkan permission.",
-                    Toast.LENGTH_SHORT
-                ).show()
-                finish()
-            }
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
-        if (!allPermissionsGranted()) {
-            ActivityCompat.requestPermissions(
-                this,
-                REQUIRED_PERMISSIONS,
-                REQUEST_CODE_PERMISSIONS
-            )
-        }
+
         setupView()
         setupAction()
 
@@ -128,9 +103,4 @@ class MainActivity : AppCompatActivity() {
         binding = null
     }
 
-    companion object {
-
-        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
-        private const val REQUEST_CODE_PERMISSIONS = 10
-    }
 }
