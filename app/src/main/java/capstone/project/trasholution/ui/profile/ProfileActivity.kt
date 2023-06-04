@@ -11,7 +11,7 @@ import capstone.project.trasholution.ui.login.LoginActivity
 
 class ProfileActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityProfileBinding
+    private var binding: ActivityProfileBinding? = null
     lateinit var sharedPreferences: SharedPreferences
 
     var PREF_LOGIN = "login"
@@ -20,12 +20,12 @@ class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(binding?.root)
 
         sharedPreferences = getSharedPreferences(PREF_LOGIN, Context.MODE_PRIVATE)
         token = sharedPreferences.getString(PREF_TOKEN, null)!!
 
-        binding.logoutButton.setOnClickListener {
+        binding?.logoutButton?.setOnClickListener {
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
             editor.clear()
             editor.apply()

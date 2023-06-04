@@ -77,6 +77,11 @@ class LoginActivity : AppCompatActivity() {
 
 
         binding.btnLoginSubmit.setOnClickListener { login() }
+//        binding.btnLoginSubmit.isEnabled = true
+//        binding.btnLoginSubmit.setOnClickListener {
+//            val intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
+//        }
 
         binding.btnSignUp.setOnClickListener {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
@@ -99,7 +104,7 @@ class LoginActivity : AppCompatActivity() {
                     showLoading(false)
                     val responseBody = response.body()
                     if (responseBody != null && !responseBody.error) {
-                        Toast.makeText(this@LoginActivity, responseBody.message, Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this@LoginActivity, responseBody?.message, Toast.LENGTH_SHORT).show()
                         val editor: SharedPreferences.Editor = sharedPreferences.edit()
                         editor.putString(PREF_EMAIL, binding.edtLoginEmail.text.toString())
                         editor.putString(PREF_PASSWORD, binding.edtLoginPassword.text.toString())
