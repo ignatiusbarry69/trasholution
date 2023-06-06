@@ -23,4 +23,14 @@ your daily waste solution and recycling advisor</string>
 
     <string name="uploadedAt">Uploaded at: %s</string>
     <string name="desc">Description:\n%s</string>
+    <string name="pengepul_list">LIST PENGEPUL</string>
+    <string name="contact">Contact</string>
+    <string name="description">Description</string>
+    <string name="location">Location</string>
+    <string name="tambah_pengepul">Tambah Pengepul</string>
+    <string name="list_article">LIST ARTICLE</string>
+    <string name="camera">CAMERA</string>
+    <string name="gallery">GALLERY</string>
+    <string name="title">Title</string>
+    <string name="type_of_waste">Type of Waste</string>
 </resources>

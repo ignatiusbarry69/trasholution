@@ -24,7 +24,7 @@ data class PengepulResponse(
 data class DataItem(
 
 	@field:SerializedName("contact")
-	val contact: Int,
+	val contact: String,
 
 	@field:SerializedName("__v")
 	val v: Int,
@@ -40,5 +40,10 @@ data class DataItem(
 	val username: String,
 
 	@field:SerializedName("createDate")
-	val createDate: String
+	val createDate: String,
+
+	@field:SerializedName("description")
+	val description: String,
+
 ) : Parcelable
+

@@ -17,6 +17,15 @@
         android:theme="@style/Theme.Trasholution"
         tools:targetApi="31">
         <activity
+            android:name=".ui.mainmenu.article.ArticleCameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.mainmenu.article.AddArticleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.mainmenu.collector.AddPengepulActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.mainmenu.article.DetailArticleActivity"
             android:exported="false" />
         <activity
