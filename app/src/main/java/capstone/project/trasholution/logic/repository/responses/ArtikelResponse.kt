@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName
 data class ArtikelResponse(
 
     @field:SerializedName("data")
-    val data: List<ArticleItem>,
+    val data: List<ArticleAddItem>,
 
     @field:SerializedName("error")
     val error: Boolean,
@@ -19,37 +19,39 @@ data class ArtikelResponse(
     val message: String
 ) : Parcelable
 
+//@Parcelize
+//@Entity(tableName = "article_entity")
+//data class ArticleItem(
+//
+//    @field:SerializedName("imgUrl")
+//    val imgUrl: String,
+//
+//    @field:SerializedName("__v")
+//    val v: Int,
+//
+//    @PrimaryKey
+//    @field:SerializedName("_id")
+//    val id: String,
+//
+//    @field:SerializedName("title")
+//    val title: String,
+//
+//    @field:SerializedName("content")
+//    val content: String,
+//
+//    @field:SerializedName("createDate")
+//    val createDate: String,
+//) : Parcelable
+
 @Parcelize
 @Entity(tableName = "article_entity")
-data class ArticleItem(
-
-    @field:SerializedName("imgUrl")
-    val imgUrl: String,
-
-    @field:SerializedName("__v")
-    val v: Int,
-
-    @PrimaryKey
-    @field:SerializedName("_id")
-    val id: String,
-
-    @field:SerializedName("title")
-    val title: String,
-
-    @field:SerializedName("content")
-    val content: String,
-
-    @field:SerializedName("createDate")
-    val createDate: String,
-) : Parcelable
-
 data class ArticleAddItem(
 
     @field:SerializedName("title")
     val title: String,
 
     @field:SerializedName("jenisSampah")
-    val jenisSampah: String,
+    val jenisSampah: String? = null,
 
     @field:SerializedName("content")
     val content: String,
@@ -69,5 +71,5 @@ data class ArticleAddItem(
 
     @field:SerializedName("__v")
     val v: Int,
-    )
+    ): Parcelable
 

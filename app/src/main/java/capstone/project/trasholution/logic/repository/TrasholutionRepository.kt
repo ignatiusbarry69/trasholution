@@ -3,7 +3,8 @@ package capstone.project.trasholution.logic.repository
 import androidx.lifecycle.LiveData
 import androidx.paging.*
 import capstone.project.trasholution.logic.repository.db.TrasholutionDatabase
-import capstone.project.trasholution.logic.repository.responses.ArticleItem
+import capstone.project.trasholution.logic.repository.responses.ArticleAddItem
+//import capstone.project.trasholution.logic.repository.responses.ArticleItem
 import capstone.project.trasholution.logic.repository.retrofit.ApiService
 import capstone.project.trasholution.logic.repository.responses.DataItem
 import capstone.project.trasholution.logic.utils.AppExecutors
@@ -19,7 +20,7 @@ class TrasholutionRepository private constructor(
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(
-                pageSize = 4
+                pageSize = 1
             ),
             remoteMediator = CollectorRemoteMediator(database,apiService),
             pagingSourceFactory = {
@@ -28,7 +29,7 @@ class TrasholutionRepository private constructor(
         ).liveData
     }
 
-    fun getListArtikel(): LiveData<PagingData<ArticleItem>> {
+    fun getListArtikel(): LiveData<PagingData<ArticleAddItem>> {
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(

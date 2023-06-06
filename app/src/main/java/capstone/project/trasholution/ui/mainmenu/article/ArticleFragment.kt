@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import capstone.project.trasholution.databinding.FragmentArticleBinding
-import capstone.project.trasholution.logic.repository.responses.ArticleItem
+import capstone.project.trasholution.logic.repository.responses.ArticleAddItem
 import capstone.project.trasholution.ui.ViewModelFactory
 import capstone.project.trasholution.ui.mainmenu.MainViewModel
 import capstone.project.trasholution.ui.mainmenu.LoadingStateAdapter
@@ -60,7 +60,7 @@ class ArticleFragment : Fragment() {
         }
 
         artikelAdapter.setOnItemClickCallback(object : ArticleAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: ArticleItem) {
+            override fun onItemClicked(data: ArticleAddItem) {
                 val detailIntent = Intent(requireActivity(), DetailArticleActivity::class.java)
                 detailIntent.putExtra(DetailArticleActivity.article, data)
                 startActivity(detailIntent)

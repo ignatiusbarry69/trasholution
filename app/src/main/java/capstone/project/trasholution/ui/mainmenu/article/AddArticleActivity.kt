@@ -16,7 +16,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import capstone.project.trasholution.databinding.ActivityAddArticleBinding
 import capstone.project.trasholution.logic.repository.responses.ArticleAddItem
-import capstone.project.trasholution.logic.repository.responses.ArticleItem
+//import capstone.project.trasholution.logic.repository.responses.ArticleItem
 import capstone.project.trasholution.logic.repository.retrofit.ApiConfig
 import capstone.project.trasholution.ui.mainmenu.MainActivity
 import capstone.project.trasholution.ui.mainmenu.prediction.CameraActivity

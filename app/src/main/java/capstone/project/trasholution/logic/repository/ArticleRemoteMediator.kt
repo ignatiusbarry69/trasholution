@@ -7,7 +7,8 @@ import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import capstone.project.trasholution.logic.repository.db.RemoteKeys
 import capstone.project.trasholution.logic.repository.db.TrasholutionDatabase
-import capstone.project.trasholution.logic.repository.responses.ArticleItem
+import capstone.project.trasholution.logic.repository.responses.ArticleAddItem
+//import capstone.project.trasholution.logic.repository.responses.ArticleItem
 import capstone.project.trasholution.logic.repository.retrofit.ApiService
 
 
@@ -16,7 +17,7 @@ class ArticleRemoteMediator(
     private val database: TrasholutionDatabase,
     private val apiService: ApiService,
 
-    ) : RemoteMediator<Int, ArticleItem>() {
+    ) : RemoteMediator<Int, ArticleAddItem>() {
 
     private companion object {
         const val INITIAL_PAGE_INDEX = 1
@@ -28,7 +29,7 @@ class ArticleRemoteMediator(
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, ArticleItem>
+        state: PagingState<Int, ArticleAddItem>
     ): MediatorResult {
         val page = when (loadType) {
             LoadType.REFRESH ->{
@@ -78,19 +79,19 @@ class ArticleRemoteMediator(
         }
     }
 
-    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, ArticleItem>): RemoteKeys? {
+    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, ArticleAddItem>): RemoteKeys? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.let { data ->
             database.remoteKeysDao().getRemoteKeysId(data.id)
         }
     }
 
-    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, ArticleItem>): RemoteKeys? {
+    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, ArticleAddItem>): RemoteKeys? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.let { data ->
             database.remoteKeysDao().getRemoteKeysId(data.id)
         }
     }
 
-    private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, ArticleItem>): RemoteKeys? {
+    private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, ArticleAddItem>): RemoteKeys? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { id ->
                 database.remoteKeysDao().getRemoteKeysId(id)

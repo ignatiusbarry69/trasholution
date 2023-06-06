@@ -4,11 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import capstone.project.trasholution.logic.repository.responses.ArticleItem
+import capstone.project.trasholution.logic.repository.responses.ArticleAddItem
+//import capstone.project.trasholution.logic.repository.responses.ArticleItem
 import capstone.project.trasholution.logic.repository.responses.DataItem
 
 @Database(
-    entities = [RemoteKeys::class, DataItem::class, ArticleItem::class],
+    entities = [RemoteKeys::class, DataItem::class, ArticleAddItem::class],
     version = 1,
     exportSchema = false
 )
