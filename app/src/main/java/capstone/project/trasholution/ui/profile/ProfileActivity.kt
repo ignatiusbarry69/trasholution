@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import capstone.project.trasholution.R
 import capstone.project.trasholution.databinding.ActivityProfileBinding
 import capstone.project.trasholution.ui.login.LoginActivity
@@ -29,6 +30,7 @@ class ProfileActivity : AppCompatActivity() {
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
             editor.clear()
             editor.apply()
+            Toast.makeText(this@ProfileActivity, "Logout Successful", Toast.LENGTH_SHORT).show()
             val intent = Intent(this@ProfileActivity, LoginActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)

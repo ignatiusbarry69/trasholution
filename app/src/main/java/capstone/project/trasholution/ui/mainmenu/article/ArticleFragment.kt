@@ -45,6 +45,11 @@ class ArticleFragment : Fragment() {
         binding.rvArticle.layoutManager = LinearLayoutManager(requireActivity())
         val artikelAdapter = ArticleAdapter()
 
+        binding.btnAddArtikel.setOnClickListener {
+            val intent = Intent(activity, AddArticleActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.rvArticle.adapter = artikelAdapter.withLoadStateFooter(
             footer = LoadingStateAdapter {
                 artikelAdapter.retry()

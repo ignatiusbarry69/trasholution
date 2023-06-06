@@ -2,8 +2,9 @@ package capstone.project.trasholution.logic.repository.retrofit
 
 import capstone.project.trasholution.logic.remote.LoginResponse
 import capstone.project.trasholution.logic.remote.UserResponse
-import capstone.project.trasholution.logic.repository.responses.ArtikelResponse
-import capstone.project.trasholution.logic.repository.responses.PengepulResponse
+import capstone.project.trasholution.logic.repository.responses.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -12,7 +13,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("/signup")
     fun registerUser(
-        @Field("/username") username: String,
+        @Field("username") username: String,
         @Field("email") email: String,
         @Field("password") password: String
     ): Call <UserResponse>
@@ -29,4 +30,22 @@ interface ApiService {
 
     @GET("/artikel")
     suspend fun getArtikel(): ArtikelResponse
+
+    @FormUrlEncoded
+    @POST("/pengepul/add")
+    fun addPengepul(
+        @Field("contact") contact: String,
+        @Field("location") location: String,
+        @Field("description") description: String
+    ) : Call <DataItem>
+
+    @Multipart
+    @POST("/artikel/add")
+    fun addArtikel(
+        @Part("title") title: RequestBody,
+        @Part("jenisSampah") jenisSampah: RequestBody,
+        @Part("content") content: RequestBody,
+        @Part file: MultipartBody.Part
+    ): Call<ArticleAddItem>
+
 }

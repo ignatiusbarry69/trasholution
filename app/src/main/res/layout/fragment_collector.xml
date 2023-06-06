@@ -5,22 +5,40 @@
     android:layout_height="match_parent"
     tools:context=".ui.mainmenu.collector.CollectorFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipe_to_refresh"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pengepul_list"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_pengepul"
-                android:layout_width="403dp"
-                android:layout_height="735dp"
-                android:layout_marginTop="50dp"
-                tools:listitem="@layout/item_pengepul"/>
+    <ImageView
+        android:id="@+id/btn_add_pengepul"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_baseline_add_24dp" />
 
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_to_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        tools:ignore="MissingConstraints">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_pengepul"
+            android:layout_width="403dp"
+            android:layout_height="735dp"
+            android:layout_marginTop="50dp"
+            android:paddingBottom="150dp"
+            tools:listitem="@layout/item_pengepul" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
 </FrameLayout>
