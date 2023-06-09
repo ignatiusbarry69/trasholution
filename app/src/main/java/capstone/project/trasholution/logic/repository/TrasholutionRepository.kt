@@ -1,13 +1,21 @@
 package capstone.project.trasholution.logic.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.*
 import capstone.project.trasholution.logic.repository.db.TrasholutionDatabase
 import capstone.project.trasholution.logic.repository.responses.ArticleAddItem
 //import capstone.project.trasholution.logic.repository.responses.ArticleItem
 import capstone.project.trasholution.logic.repository.retrofit.ApiService
 import capstone.project.trasholution.logic.repository.responses.DataItem
+import capstone.project.trasholution.logic.repository.responses.ModelResponse
 import capstone.project.trasholution.logic.utils.AppExecutors
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class TrasholutionRepository private constructor(
     private val apiService: ApiService,
@@ -29,7 +37,7 @@ class TrasholutionRepository private constructor(
         ).liveData
     }
 
-    fun getListArtikel(): LiveData<PagingData<ArticleAddItem>> {
+    fun getListArtikel(query: String): LiveData<PagingData<ArticleAddItem>> {
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(
@@ -37,11 +45,36 @@ class TrasholutionRepository private constructor(
             ),
             remoteMediator = ArticleRemoteMediator(database,apiService),
             pagingSourceFactory = {
-                database.artikelDao().getAllArtikel()
+                database.artikelDao().getAllArtikel(query)
             }
         ).liveData
     }
 
+    fun predict(token: String,file: MultipartBody.Part): LiveData<Result<String>> {
+        val result = MutableLiveData<Result<String>>()
+        result.value = Result.Loading
+        val client = apiService.predict(token, file)
+        client.enqueue(object : Callback<ModelResponse> {
+            override fun onResponse(
+                call: Call<ModelResponse>,
+                response: Response<ModelResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null && !responseBody.error) {
+                        result.value = Result.Success(responseBody.data)
+                    }
+                } else {
+                    result.value = Result.Error(response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<ModelResponse>, t: Throwable) {
+                result.value = Result.Error(t.toString())
+            }
+        })
+        return result
+    }
     companion object {
         @Volatile
         private var instance: TrasholutionRepository? = null

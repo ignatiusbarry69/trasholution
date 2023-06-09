@@ -102,5 +102,4 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         binding = null
     }
-
 }

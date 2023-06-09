@@ -29,7 +29,9 @@ interface ApiService {
     suspend fun getPengepul(): PengepulResponse
 
     @GET("/artikel")
-    suspend fun getArtikel(): ArtikelResponse
+    suspend fun getArtikel(
+//        @Query("input") input: String
+    ): ArtikelResponse
 
     @FormUrlEncoded
     @POST("/pengepul/add")
@@ -48,4 +50,10 @@ interface ApiService {
         @Part file: MultipartBody.Part
     ): Call<ArticleAddItem>
 
+    @Multipart
+    @POST("/predictImage")
+    fun predict(
+        @Header("Authorization") token: String,
+        @Part file: MultipartBody.Part
+    ): Call<ModelResponse>
 }

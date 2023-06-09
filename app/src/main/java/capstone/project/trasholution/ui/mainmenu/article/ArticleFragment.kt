@@ -1,5 +1,7 @@
 package capstone.project.trasholution.ui.mainmenu.article
 
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,8 +9,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import capstone.project.trasholution.R
 import capstone.project.trasholution.databinding.FragmentArticleBinding
 import capstone.project.trasholution.logic.repository.responses.ArticleAddItem
 import capstone.project.trasholution.ui.ViewModelFactory
@@ -32,7 +36,8 @@ class ArticleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupViewModel()
-        setupView()
+        setupRV("")
+        setupSearch()
         refreshApp()
     }
 
@@ -41,7 +46,38 @@ class ArticleFragment : Fragment() {
         mainViewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
     }
 
-    private fun setupView() {
+    private fun setupSearch(){
+        val searchManager = requireActivity().getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = binding.etSearch
+        searchView.setIconifiedByDefault(false)
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
+        searchView.queryHint = resources.getString(R.string.search_hint)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                if (searchView.query.isEmpty()) {
+                    setupRV("")
+                } else {
+                    setupRV(query)
+                    searchView.clearFocus()
+                }
+                return true
+
+            }
+            override fun onQueryTextChange(query: String): Boolean {
+                if (searchView.query.isEmpty()) {
+                    setupRV("")
+                } else {
+                    setupRV(query)
+                }
+//                searchView.clearFocus()
+                return false
+            }
+        })
+
+    }
+
+    private fun setupRV(query: String) {
         binding.rvArticle.layoutManager = LinearLayoutManager(requireActivity())
         val artikelAdapter = ArticleAdapter()
 
@@ -55,7 +91,7 @@ class ArticleFragment : Fragment() {
                 artikelAdapter.retry()
             }
         )
-        mainViewModel.getListArtikel.observe(requireActivity()) {
+        mainViewModel.getListArtikel(query).observe(requireActivity()) {
             artikelAdapter.submitData(lifecycle, it)
         }
 
@@ -71,7 +107,7 @@ class ArticleFragment : Fragment() {
 
     private fun refreshApp() {
         binding.swipeToRefresh.setOnRefreshListener {
-            setupView()
+            setupSearch()
             binding.swipeToRefresh.isRefreshing = false
         }
     }

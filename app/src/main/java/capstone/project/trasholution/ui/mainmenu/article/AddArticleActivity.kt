@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -122,11 +123,13 @@ class AddArticleActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     } else {
+                        Log.d("TAGadderr", response.message())
                         Toast.makeText(this@AddArticleActivity, "Failed to Add Article", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<ArticleAddItem>, t: Throwable) {
+                    Log.d("TAGadderr", t.toString())
                     Toast.makeText(this@AddArticleActivity, "Please select a file first", Toast.LENGTH_SHORT).show()
                 }
             })

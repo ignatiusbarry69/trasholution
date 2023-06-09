@@ -14,8 +14,10 @@ interface ArtikelDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertArtikel(story: List<ArticleAddItem>)
 
-    @Query("SELECT * FROM article_entity")
-    fun getAllArtikel(): PagingSource<Int, ArticleAddItem>
+    @Query("SELECT * FROM article_entity WHERE createDate LIKE '%' || :query || '%' OR username LIKE '%' || :query || '%' OR title LIKE '%' || :query || '%' OR jenisSampah LIKE '%' || :query || '%' OR content LIKE '%' || :query || '%'")
+    fun getAllArtikel(query: String): PagingSource<Int, ArticleAddItem>
+
+
 
     @Query("DELETE FROM article_entity")
     suspend fun deleteAll()

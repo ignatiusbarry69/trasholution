@@ -33,4 +33,5 @@ your daily waste solution and recycling advisor</string>
     <string name="gallery">GALLERY</string>
     <string name="title">Title</string>
     <string name="type_of_waste">Type of Waste</string>
+    <string name="search_hint">find something...</string>
 </resources>

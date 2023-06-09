@@ -16,6 +16,7 @@ import capstone.project.trasholution.logic.repository.retrofit.ApiService
 class ArticleRemoteMediator(
     private val database: TrasholutionDatabase,
     private val apiService: ApiService,
+//    private val query: String,
 
     ) : RemoteMediator<Int, ArticleAddItem>() {
 

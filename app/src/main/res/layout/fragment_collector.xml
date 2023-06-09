@@ -35,7 +35,6 @@
             android:layout_width="403dp"
             android:layout_height="735dp"
             android:layout_marginTop="50dp"
-            android:paddingBottom="150dp"
             tools:listitem="@layout/item_pengepul" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
