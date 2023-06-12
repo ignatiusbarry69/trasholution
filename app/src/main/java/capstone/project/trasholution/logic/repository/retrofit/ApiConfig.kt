@@ -1,5 +1,6 @@
 package capstone.project.trasholution.logic.repository.retrofit
 
+import androidx.viewbinding.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -8,13 +9,13 @@ import java.util.concurrent.TimeUnit
 
 object ApiConfig {
     fun getApiService(): ApiService {
-        //        val loggingInterceptor = if (BuildConfig.DEBUG) {
-//            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-//        } else {
-//            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
-//        }
-        val loggingInterceptor =
+        val loggingInterceptor = if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        } else {
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+        }
+//        val loggingInterceptor =
+//            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .connectTimeout(60, TimeUnit.SECONDS)

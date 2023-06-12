@@ -16,7 +16,7 @@ data class PengepulResponse(
 	val error: Boolean,
 
 	@field:SerializedName("message")
-	val message: String? = null
+	val message: String
 ) : Parcelable
 
 @Parcelize
@@ -29,21 +29,25 @@ data class DataItem(
 	@field:SerializedName("__v")
 	val v: Int,
 
+	@field:SerializedName("description")
+	val description: String,
+
 	@field:SerializedName("location")
 	val location: String,
+
+	@field:SerializedName("lon")
+	val lon: Double? = null,
 
 	@PrimaryKey
 	@field:SerializedName("_id")
 	val id: String,
 
+	@field:SerializedName("lat")
+	val lat: Double? = null,
+
 	@field:SerializedName("username")
 	val username: String,
 
 	@field:SerializedName("createDate")
-	val createDate: String,
-
-	@field:SerializedName("description")
-	val description: String,
-
+	val createDate: String
 ) : Parcelable
-

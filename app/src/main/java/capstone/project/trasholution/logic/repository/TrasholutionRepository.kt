@@ -1,5 +1,6 @@
 package capstone.project.trasholution.logic.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.*
@@ -9,6 +10,7 @@ import capstone.project.trasholution.logic.repository.responses.ArticleAddItem
 import capstone.project.trasholution.logic.repository.retrofit.ApiService
 import capstone.project.trasholution.logic.repository.responses.DataItem
 import capstone.project.trasholution.logic.repository.responses.ModelResponse
+import capstone.project.trasholution.logic.repository.responses.PengepulResponse
 import capstone.project.trasholution.logic.utils.AppExecutors
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -28,7 +30,7 @@ class TrasholutionRepository private constructor(
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(
-                pageSize = 1
+                pageSize = 5
             ),
             remoteMediator = CollectorRemoteMediator(database,apiService),
             pagingSourceFactory = {
@@ -75,6 +77,30 @@ class TrasholutionRepository private constructor(
         })
         return result
     }
+
+    fun getLocation(): LiveData<Result<List<DataItem>>> {
+        val result = MutableLiveData<Result<List<DataItem>>>()
+        apiService.getLocation()
+            .enqueue(object : Callback<PengepulResponse> {
+                override fun onResponse(
+                    call: Call<PengepulResponse>,
+                    response: Response<PengepulResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        if (responseBody != null && !responseBody.error) {
+                            Log.d("TAG", "${responseBody.data[0].lat}, ${responseBody.data[0].lon} ")
+                            result.value = Result.Success(responseBody.data)
+                        }
+                    }
+                }
+                override fun onFailure(call: Call<PengepulResponse>, t: Throwable) {
+                    result.value = Result.Error("error")
+                }
+            })
+        return result
+    }
+
     companion object {
         @Volatile
         private var instance: TrasholutionRepository? = null

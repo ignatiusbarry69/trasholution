@@ -1,83 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_predict_and_solution"
+
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
-    tools:context="capstone.project.trasholution.ui.mainmenu.prediction.PredictAndSolutionActivity">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ProgressBar
-        android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
+        android:id="@+id/progressBar"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/predictBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.723" />
+        app:layout_constraintTop_toBottomOf="@+id/previewImageView" />
 
     <ImageView
-        android:id="@+id/previewImageView"
-        android:layout_width="379dp"
-        android:layout_height="371dp"
         android:contentDescription="placeholder image"
+        android:id="@+id/previewImageView"
+        android:layout_height="371dp"
+        android:layout_width="379dp"
         android:maxHeight="500dp"
         android:src="@drawable/ic_place_holder"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text"
-        android:layout_width="376dp"
-        android:layout_height="37dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
         android:text="Your waste categorized as.."
-        android:textSize="18sp"
-        android:paddingLeft="16dp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/previewImageView" />
 
     <TextView
         android:id="@+id/prediction"
-        android:layout_width="375dp"
-        android:layout_height="62dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         android:text="prediksi"
-        android:paddingLeft="16dp"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text" />
 
-    <TextView
-        android:id="@+id/desc"
-        android:layout_width="373dp"
-        android:layout_height="119dp"
-        android:text="deskripsi"
-        android:paddingLeft="16dp"
-        android:textSize="18sp"
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="164dp"
+        app:layout_constraintBottom_toTopOf="@+id/predictBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prediction" />
+        app:layout_constraintTop_toBottomOf="@+id/prediction">
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="deskripsi"
+            android:textSize="18sp" />
+    </ScrollView>
 
     <Button
         android:id="@+id/predictBtn"
         android:layout_width="wrap_content"
         android:layout_height="?actionBarSize"
-        android:layout_gravity="end"
-        android:layout_marginBottom="4dp"
-        android:padding="8dp"
         android:text="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="714dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,17 +28,20 @@ interface ApiService {
     @GET("/pengepul")
     suspend fun getPengepul(): PengepulResponse
 
+    @GET("/pengepul")
+    fun getLocation(): Call<PengepulResponse>
+
     @GET("/artikel")
-    suspend fun getArtikel(
-//        @Query("input") input: String
-    ): ArtikelResponse
+    suspend fun getArtikel(): ArtikelResponse
 
     @FormUrlEncoded
     @POST("/pengepul/add")
     fun addPengepul(
         @Field("contact") contact: String,
         @Field("location") location: String,
-        @Field("description") description: String
+        @Field("description") description: String,
+        @Field("lat") lat: Double?,
+        @Field("lon") lon: Double?,
     ) : Call <DataItem>
 
     @Multipart

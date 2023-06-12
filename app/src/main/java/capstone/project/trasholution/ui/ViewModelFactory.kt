@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import capstone.project.trasholution.logic.repository.Injection
 import capstone.project.trasholution.logic.repository.TrasholutionRepository
 import capstone.project.trasholution.ui.mainmenu.MainViewModel
+import capstone.project.trasholution.ui.map.MapsViewModel
 
 class ViewModelFactory private constructor(private val TrasholutionRepository: TrasholutionRepository) :
     ViewModelProvider.NewInstanceFactory() {
@@ -14,6 +15,9 @@ class ViewModelFactory private constructor(private val TrasholutionRepository: T
         return when {
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(TrasholutionRepository) as T
+            }
+            modelClass.isAssignableFrom(MapsViewModel::class.java) -> {
+                MapsViewModel(TrasholutionRepository) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

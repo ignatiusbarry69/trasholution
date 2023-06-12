@@ -119,12 +119,12 @@ class CameraActivity : AppCompatActivity() {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     cropFile(photoFile)
                     val file = reduceFileImage(photoFile)
-                    val requestImageFile = file.asRequestBody("image/*".toMediaTypeOrNull())
-                    val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-                        "photo",
-                        file.name,
-                        requestImageFile
-                    )
+//                    val requestImageFile = file.asRequestBody("image/*".toMediaTypeOrNull())
+//                    val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+//                        "photo",
+//                        file.name,
+//                        requestImageFile
+//                    )
                     val goIntent = Intent(this@CameraActivity, PredictAndSolutionActivity::class.java)
                     goIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                     goIntent.putExtra(PredictAndSolutionActivity.PICTURE, file)

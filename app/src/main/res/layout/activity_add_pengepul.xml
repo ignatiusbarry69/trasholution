@@ -7,6 +7,17 @@
     tools:context=".ui.mainmenu.collector.AddPengepulActivity">
 
 
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/giveLocation"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="36dp"
+        android:text="Add your current position as your location?   "
+        android:layout_marginBottom="216dp"
+        android:checked="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/tv_add_pengepul_title"
         android:layout_width="match_parent"

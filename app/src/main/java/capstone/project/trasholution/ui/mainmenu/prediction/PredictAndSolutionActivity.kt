@@ -47,12 +47,7 @@ class PredictAndSolutionActivity : AppCompatActivity() {
 //        hideSystemUI()
         setupViewModel()
         showLoading(false, binding!!.progressBar)
-        binding?.predictBtn?.setOnClickListener {
-            val intent = Intent(this@PredictAndSolutionActivity, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
 
-        }
 
         try{
             val picture = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -79,32 +74,65 @@ class PredictAndSolutionActivity : AppCompatActivity() {
                 requestImageFile
             )
             val myToken = "Bearer $token"
-            mainViewModel.predict(myToken, imageMultipart).observe(this) { result ->
-                when (result) {
-                    is Result.Loading -> {
-                        showLoading(true, binding!!.progressBar)
-                        binding?.prediction?.visibility = View.GONE
-                        binding?.desc?.visibility = View.GONE
-                    }
-                    is Result.Success -> {
-                        showLoading(false, binding!!.progressBar)
-                        val predictedValue = result.data
-                        binding?.prediction?.text = predictedValue
-                        binding?.prediction?.visibility = View.VISIBLE
-
-                        //nambah percabangan description
-                    }
-                    is Result.Error -> {
-                        showLoading(false, binding!!.progressBar)
-                        createToast(this, result.error)
-                        Log.d("TAGerror", result.error)
-                    }
-                }
-            }
+            predict(myToken, imageMultipart)
 
         }catch(e: Exception){
             createToast(this, e.toString())
             Log.d("TAGfailure", e.toString())
+        }
+    }
+
+    private fun predict(myToken: String, imageMultipart: MultipartBody.Part){
+        mainViewModel.predict(myToken, imageMultipart).observe(this) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    showLoading(true, binding!!.progressBar)
+                    binding?.prediction?.visibility = View.GONE
+                    binding?.desc?.visibility = View.GONE
+                    binding?.predictBtn?.isEnabled = false
+                    binding?.predictBtn?.text = getString(R.string.find_more)
+                    binding?.predictBtn?.alpha = 0.5f
+                }
+                is Result.Success -> {
+                    showLoading(false, binding!!.progressBar)
+                    val predictedValue = result.data
+                    binding?.prediction?.text = predictedValue
+                    binding?.prediction?.visibility = View.VISIBLE
+                    binding?.predictBtn?.isEnabled = true
+                    binding?.predictBtn?.text = getString(R.string.find_more)
+
+                    binding?.desc?.text = when(predictedValue){
+                        "Electronic Waste" -> getString(R.string.ewaste_handling)
+                        "Food Scraps" -> getString(R.string.foodscrap_handling)
+                        "Glass" -> getString(R.string.glass_handling)
+                        "Metalic Materials" -> getString(R.string.metalwaste_handling)
+                        "Paper" -> getString(R.string.paperwaste_handling)
+                        "Plastic" -> getString(R.string.plasticwaste_handling)
+                        "Textile" -> getString(R.string.textilewaste_handling)
+                        "Organic Vegetation Waste" -> getString(R.string.organicwaste_handling)
+                        else -> getString(R.string.no_handling)
+                    }
+                    
+                    binding?.desc?.visibility = View.VISIBLE
+
+                    binding?.predictBtn?.setOnClickListener {
+                        val intent = Intent(this@PredictAndSolutionActivity, MainActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        startActivity(intent)
+                    }
+                }
+                is Result.Error -> {
+                    showLoading(false, binding!!.progressBar)
+                    createToast(this, result.error)
+                    Log.d("TAGerror", result.error)
+                    binding?.predictBtn?.text = getString(R.string.try_again)
+                    binding?.predictBtn?.isEnabled = true
+
+                    binding?.predictBtn?.setOnClickListener {
+                        predict(myToken, imageMultipart)
+                    }
+                }
+            }
         }
     }
     private fun setupViewModel() {

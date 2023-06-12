@@ -8,7 +8,8 @@ object DataDummy {
         val items: MutableList<DataItem> = arrayListOf()
         for (i in 0..100) {
             val story = DataItem(
-                contact = i+80000,
+                contact = "contact_$i",
+                description = "description_$i",
                 v = 0,
                 location = "location_$i",
                 id = i.toString(),
