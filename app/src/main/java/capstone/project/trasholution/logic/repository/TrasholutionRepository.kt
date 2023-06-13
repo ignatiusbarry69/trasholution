@@ -39,6 +39,31 @@ class TrasholutionRepository private constructor(
         ).liveData
     }
 
+    fun getMyData(token: String, nama: String): LiveData<Result<String>> {
+        Log.d("tag", "terpanggil")
+        val result = MutableLiveData<Result<String>>()
+        apiService.getMyData(token, nama)
+            .enqueue(object : Callback<PengepulResponse> {
+                override fun onResponse(
+                    call: Call<PengepulResponse>,
+                    response: Response<PengepulResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        if (responseBody != null && responseBody.data.isNotEmpty()) {
+                            result.value = Result.Success(responseBody.data[0].id)
+                        } else {
+                            result.value = Result.Error("error")
+                        }
+                    }
+                }
+                override fun onFailure(call: Call<PengepulResponse>, t: Throwable) {
+                    result.value = Result.Error("error")
+                }
+            })
+        return result
+    }
+
     fun getListArtikel(query: String): LiveData<PagingData<ArticleAddItem>> {
         @OptIn(ExperimentalPagingApi::class)
         return Pager(

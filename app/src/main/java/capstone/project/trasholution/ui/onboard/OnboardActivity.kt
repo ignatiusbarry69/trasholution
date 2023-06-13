@@ -37,8 +37,10 @@ class OnboardActivity : AppCompatActivity() {
         //tab layout
         val tabs: TabLayout = binding!!.tabs
 
-        binding?.btnLeft?.text = "SKIP"
-        binding?.btnRight?.text = "NEXT"
+        binding?.btnLeft?.text = "Skip"
+        binding?.btnRight?.text = "Next"
+        setupCircleFirst()
+
 
         TabLayoutMediator(tabs, viewPager){tab, position ->
             tab.text = position.toString()
@@ -50,14 +52,21 @@ class OnboardActivity : AppCompatActivity() {
 
                 // Update button behavior based on the selected tab position
                 if (position == 0) {
-                    binding?.btnLeft?.text = "SKIP"
-                    binding?.btnRight?.text = "NEXT"
+                    setupCircleSecond()
+                    binding?.btnLeft?.text = "Skip"
+                    binding?.btnRight?.text = "Next"
+                    binding?.circleOne?.setBackgroundResource(R.drawable.circle_shape_lime)
+
                 } else if (position == 1) {
-                    binding?.btnLeft?.text = "BACK"
-                    binding?.btnRight?.text = "NEXT"
+                    setupCircleSecond()
+                    binding?.btnLeft?.text = "Back"
+                    binding?.btnRight?.text = "Next"
+                    binding?.circleTwo?.setBackgroundResource(R.drawable.circle_shape_lime)
                 } else {
-                    binding?.btnLeft?.text = "BACK"
-                    binding?.btnRight?.text = "START"
+                    setupCircleSecond()
+                    binding?.btnLeft?.text = "Back"
+                    binding?.btnRight?.text = "Start"
+                    binding?.circleThree?.setBackgroundResource(R.drawable.circle_shape_lime)
                 }
             }
 
@@ -73,7 +82,7 @@ class OnboardActivity : AppCompatActivity() {
         // Set click listeners for the buttons
         binding?.btnLeft?.setOnClickListener {
 
-            if (binding?.btnLeft?.text == "SKIP") {
+            if (binding?.btnLeft?.text == "Skip") {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -84,7 +93,7 @@ class OnboardActivity : AppCompatActivity() {
         }
 
         binding?.btnRight?.setOnClickListener {
-            if (binding?.btnRight?.text == "START") {
+            if (binding?.btnRight?.text == "Start") {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -98,6 +107,17 @@ class OnboardActivity : AppCompatActivity() {
 
     }
 
+    private fun setupCircleFirst() {
+        binding?.circleOne?.setBackgroundResource(R.drawable.circle_shape_lime)
+        binding?.circleTwo?.setBackgroundResource(R.drawable.circle_shape)
+        binding?.circleThree?.setBackgroundResource(R.drawable.circle_shape)
+    }
+
+    private fun setupCircleSecond() {
+        binding?.circleOne?.setBackgroundResource(R.drawable.circle_shape)
+        binding?.circleTwo?.setBackgroundResource(R.drawable.circle_shape)
+        binding?.circleThree?.setBackgroundResource(R.drawable.circle_shape)
+    }
     private fun hideSystemUI() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

@@ -13,6 +13,7 @@ class MySubmitButton : AppCompatButton {
     private lateinit var enabledBackground: Drawable
     private lateinit var disabledBackground: Drawable
     private var txtColor: Int = 0
+    private var backgroundColor: Int = 0
 
     constructor(context: Context) : super(context) {
         init()

@@ -29,14 +29,17 @@ class OnboardFragment : Fragment() {
         }
         if (this.position == "1") {
             //ki ngko nggo ngatur isine di statis ning kene wae
-            binding?.onBoardLottie?.setAnimation(R.raw.welcome)
-            binding?.textView?.text = getString(R.string.welcomeLottie)
-
+            binding?.onBoardLottie?.setAnimation(R.raw.nature_load)
+            binding?.tvTitleOnboard?.text = getString(R.string.titleWelcome)
+            binding?.tvContentOnboard?.text = getString(R.string.contentWelcome)
         }else if(this.position == "2"){
-            binding?.onBoardLottie?.setAnimation(R.raw.recycle)
-            binding?.textView?.text = "fragment 2 test"
+            binding?.onBoardLottie?.setAnimation(R.raw.take_photo)
+            binding?.tvTitleOnboard?.text = getString(R.string.titleHow)
+            binding?.tvContentOnboard?.text = getString(R.string.contentHow)
         }else {
-
+            binding?.onBoardLottie?.setAnimation(R.raw.onboard1)
+            binding?.tvTitleOnboard?.text = getString(R.string.titleCraftAndConnect)
+            binding?.tvContentOnboard?.text = getString(R.string.contentCraftAndConnect)
         }
     }
 

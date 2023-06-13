@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_name"
-        app:startIconDrawable="@drawable/ic_baseline_name_24dp">
+        app:startIconDrawable="@drawable/ic_baseline_person_lime_24dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_register_name"
@@ -76,7 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_email"
-        app:startIconDrawable="@drawable/ic_baseline_email_24dp">
+        app:startIconDrawable="@drawable/ic_baseline_email_lime_24dp">
 
         <capstone.project.trasholution.customview.MyEmailEditText
             android:id="@+id/edt_register_email"
@@ -111,7 +111,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_password"
-        app:startIconDrawable="@drawable/ic_baseline_password_24dp">
+        app:startIconDrawable="@drawable/ic_baseline_password_lime_24dp">
 
         <capstone.project.trasholution.customview.MyPasswordEditText
             android:id="@+id/edt_register_password"

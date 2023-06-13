@@ -53,11 +53,6 @@ class CollectorFragment : Fragment() {
             pengepulAdapter.submitData(lifecycle, it)
         }
 
-        binding.btnAddPengepul.setOnClickListener {
-            val intent = Intent(activity, AddPengepulActivity::class.java)
-            startActivity(intent)
-        }
-
     }
 
     private fun refreshApp() {
