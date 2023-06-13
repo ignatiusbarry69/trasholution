@@ -28,6 +28,9 @@ interface ApiService {
     @GET("/pengepul")
     suspend fun getPengepul(): PengepulResponse
 
+    @GET("/pengepul")
+    fun getLocation(): Call<PengepulResponse>
+
     @GET("/artikel")
     suspend fun getArtikel(): ArtikelResponse
 
@@ -36,7 +39,9 @@ interface ApiService {
     fun addPengepul(
         @Field("contact") contact: String,
         @Field("location") location: String,
-        @Field("description") description: String
+        @Field("description") description: String,
+        @Field("lat") lat: Double?,
+        @Field("lon") lon: Double?,
     ) : Call <DataItem>
 
     @Multipart
@@ -48,4 +53,10 @@ interface ApiService {
         @Part file: MultipartBody.Part
     ): Call<ArticleAddItem>
 
+    @Multipart
+    @POST("/predictImage")
+    fun predict(
+        @Header("Authorization") token: String,
+        @Part file: MultipartBody.Part
+    ): Call<ModelResponse>
 }

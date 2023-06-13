@@ -8,13 +8,13 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import capstone.project.trasholution.databinding.ItemArtikelBinding
-import capstone.project.trasholution.logic.repository.responses.ArticleItem
+import capstone.project.trasholution.logic.repository.responses.ArticleAddItem
 import com.bumptech.glide.Glide
 import setLocalDateFormat
 
-class ArticleAdapter: PagingDataAdapter<ArticleItem, ArticleAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class ArticleAdapter: PagingDataAdapter<ArticleAddItem, ArticleAdapter.MyViewHolder>(DIFF_CALLBACK) {
     class MyViewHolder(private val binding: ItemArtikelBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(articleUser: ArticleItem) {
+        fun bind(articleUser: ArticleAddItem) {
             with(binding) {
                 tvItemName.text = articleUser.title
                 createdAt.setLocalDateFormat(articleUser.createDate)
@@ -54,16 +54,16 @@ class ArticleAdapter: PagingDataAdapter<ArticleItem, ArticleAdapter.MyViewHolder
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: ArticleItem)
+        fun onItemClicked(data: ArticleAddItem)
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ArticleItem>() {
-            override fun areItemsTheSame(oldItem: ArticleItem, newItem: ArticleItem): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ArticleAddItem>() {
+            override fun areItemsTheSame(oldItem: ArticleAddItem, newItem: ArticleAddItem): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: ArticleItem, newItem: ArticleItem): Boolean {
+            override fun areContentsTheSame(oldItem: ArticleAddItem, newItem: ArticleAddItem): Boolean {
                 return oldItem.id == newItem.id
             }
         }

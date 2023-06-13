@@ -23,14 +23,28 @@ your daily waste solution and recycling advisor</string>
 
     <string name="uploadedAt">Uploaded at: %s</string>
     <string name="desc">Description:\n%s</string>
-    <string name="pengepul_list">LIST PENGEPUL</string>
+    <string name="pengepul_list">WASTE COLLECTORS</string>
     <string name="contact">Contact</string>
     <string name="description">Description</string>
-    <string name="location">Location</string>
+    <string name="location">Detail Location</string>
     <string name="tambah_pengepul">Tambah Pengepul</string>
-    <string name="list_article">LIST ARTICLE</string>
+    <string name="list_article">WASTE IDEAS</string>
     <string name="camera">CAMERA</string>
     <string name="gallery">GALLERY</string>
     <string name="title">Title</string>
     <string name="type_of_waste">Type of Waste</string>
+    <string name="search_hint">find something...</string>
+    <string name="find_more">Find More</string>
+    <string name="ewaste_handling">This kind of waste presents opportunities for recycling, reuse, and resource recovery. It can be transformed into new products, reducing environmental impact and promoting sustainability.</string>
+    <string name="foodscrap_handling">This kind of waste offer valuable potential for composting and organic recycling. By diverting them from landfills, we can reduce methane emissions and create nutrient-rich compost for healthier soil and sustainable agriculture.</string>
+    <string name="glass_handling">This kind of waste holds significant potential for recycling and resource conservation. By recycling glass, we can reduce energy consumption and raw material extraction. It can be transformed into new glass products, promoting a circular economy and environmental sustainability.</string>
+    <string name="metalwaste_handling">This kind of waste carries immense potential for recycling and resource conservation. By recycling metals, we reduce the need for raw material extraction, conserve energy, and minimize environmental impact. It can be transformed into new metal products, fostering a sustainable and circular economy.</string>
+    <string name="paperwaste_handling">This kind of waste holds great potential for recycling and sustainability. By recycling paper, we conserve forests, reduce energy consumption, and minimize waste in landfills. It can be transformed into new paper products, promoting a circular economy and environmental stewardship.</string>
+    <string name="plasticwaste_handling">This kind of waste presents a critical opportunity for recycling and environmental responsibility. By recycling plastics, we reduce pollution, conserve resources, and mitigate the impact on ecosystems. It can be transformed into new plastic products, promoting a circular economy and a cleaner planet.</string>
+    <string name="try_again">Try Again</string>
+    <string name="textilewaste_handling">This kind of waste holds immense potential for recycling and sustainability. By recycling textiles, we reduce landfill waste, conserve resources, and minimize environmental impact. It can be transformed into new textiles or repurposed, promoting a circular economy and responsible fashion practices.</string>
+    <string name="organicwaste_handling">This kind of waste offers significant potential for composting and nutrient recycling. By composting organic waste, we can enrich soil, reduce methane emissions, and promote sustainable gardening and agriculture practices. It\'s a natural way to close the loop and support a greener environment.</string>
+    <string name="no_handling">Sorry, we don\'t have data about this waste</string>
+    <string name="fail_getlocation">failed to retrieve location</string>
+    <string name="need_location">need permission to access location</string>
 </resources>

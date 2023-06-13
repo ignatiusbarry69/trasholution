@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import capstone.project.trasholution.R
 import capstone.project.trasholution.databinding.ActivityDetailArticleBinding
-import capstone.project.trasholution.logic.repository.responses.ArticleItem
+import capstone.project.trasholution.logic.repository.responses.ArticleAddItem
 import com.bumptech.glide.Glide
 
 class DetailArticleActivity : AppCompatActivity() {
@@ -20,7 +20,7 @@ class DetailArticleActivity : AppCompatActivity() {
 
     private fun setupView(){
         val article = if (Build.VERSION.SDK_INT >= 33) {
-            intent.getParcelableExtra(article, ArticleItem::class.java)
+            intent.getParcelableExtra(article, ArticleAddItem::class.java)
         } else {
             @Suppress("DEPRECATION")
             intent.getParcelableExtra(article)
@@ -28,7 +28,7 @@ class DetailArticleActivity : AppCompatActivity() {
 
         getDetaiStory(article)
     }
-    private fun getDetaiStory(data: ArticleItem?) {
+    private fun getDetaiStory(data: ArticleAddItem?) {
         Glide.with(this)
             .load(data?.imgUrl)
             .into(binding.ivArticle)

@@ -23,6 +23,7 @@ import capstone.project.trasholution.databinding.ActivityMainBinding
 import capstone.project.trasholution.ui.mainmenu.article.ArticleFragment
 import capstone.project.trasholution.ui.mainmenu.collector.CollectorFragment
 import capstone.project.trasholution.ui.mainmenu.prediction.CameraActivity
+import capstone.project.trasholution.ui.map.MapsActivity
 import capstone.project.trasholution.ui.profile.ProfileActivity
 import rotateFile
 import java.io.File
@@ -92,6 +93,11 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
+            R.id.map -> {
+                val intent = Intent(this@MainActivity, MapsActivity::class.java)
+                startActivity(intent)
+                true
+            }
             else -> {
                 true
             }
@@ -102,5 +108,4 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         binding = null
     }
-
 }

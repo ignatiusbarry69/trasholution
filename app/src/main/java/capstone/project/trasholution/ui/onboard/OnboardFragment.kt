@@ -23,7 +23,7 @@ class OnboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val activity = requireActivity() as AppCompatActivity
+
         arguments?.let {
             position = it.getInt(POSITION).toString()
         }

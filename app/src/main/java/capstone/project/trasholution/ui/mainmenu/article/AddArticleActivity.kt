@@ -10,13 +10,14 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import capstone.project.trasholution.databinding.ActivityAddArticleBinding
 import capstone.project.trasholution.logic.repository.responses.ArticleAddItem
-import capstone.project.trasholution.logic.repository.responses.ArticleItem
+//import capstone.project.trasholution.logic.repository.responses.ArticleItem
 import capstone.project.trasholution.logic.repository.retrofit.ApiConfig
 import capstone.project.trasholution.ui.mainmenu.MainActivity
 import capstone.project.trasholution.ui.mainmenu.prediction.CameraActivity
@@ -122,11 +123,13 @@ class AddArticleActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     } else {
+                        Log.d("TAGadderr", response.message())
                         Toast.makeText(this@AddArticleActivity, "Failed to Add Article", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<ArticleAddItem>, t: Throwable) {
+                    Log.d("TAGadderr", t.toString())
                     Toast.makeText(this@AddArticleActivity, "Please select a file first", Toast.LENGTH_SHORT).show()
                 }
             })
