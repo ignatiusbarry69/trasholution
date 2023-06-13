@@ -30,9 +30,11 @@ class LoginActivity : AppCompatActivity() {
     var PREF_EMAIL = "email"
     var PREF_PASSWORD = "password"
     var PREF_TOKEN = "token"
+    var PREF_USERNAME = ""
 
     var email = ""
     var password = ""
+    var username = ""
     var validation = Patterns.EMAIL_ADDRESS
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,8 +111,8 @@ class LoginActivity : AppCompatActivity() {
                         editor.putString(PREF_EMAIL, binding.edtLoginEmail.text.toString())
                         editor.putString(PREF_PASSWORD, binding.edtLoginPassword.text.toString())
                         editor.putString(PREF_TOKEN, responseBody.data.token)
+                        editor.putString(PREF_USERNAME, "Paijo")
                         editor.apply()
-
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)

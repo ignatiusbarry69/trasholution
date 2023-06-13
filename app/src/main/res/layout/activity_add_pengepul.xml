@@ -6,29 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.mainmenu.collector.AddPengepulActivity">
 
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/giveLocation"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="36dp"
-        android:text="Add your current position as your location?   "
-        android:layout_marginBottom="216dp"
-        android:checked="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <TextView
         android:id="@+id/tv_add_pengepul_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tambah_pengepul"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/tambah_pengepul"
         android:textSize="30sp"
-        android:layout_marginTop="20dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_add_pengepul_contact"
@@ -48,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
+        app:startIconDrawable="@drawable/ic_baseline_phone_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_add_pengepul_contact">
@@ -56,8 +45,8 @@
             android:id="@+id/edt_add_pengepul_contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10" />
+            android:ems="10"
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -119,14 +108,26 @@
             android:ems="10" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/giveLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="30dp"
+        android:checked="false"
+        android:text="Add your current position as your location?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_description" />
+
     <Button
         android:id="@+id/btn_add_pengepul_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
         android:text="@string/submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_description"/>
+        app:layout_constraintTop_toBottomOf="@id/giveLocation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -59,4 +59,28 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Part file: MultipartBody.Part
     ): Call<ModelResponse>
+
+    @GET("/pengepul/{username}")
+    fun getMyData(
+        @Header("Authorization") token: String,
+        @Path("username") username: String
+    ): Call<PengepulResponse>
+
+    @FormUrlEncoded
+    @PUT("/pengepul/{id}")
+    fun updatePengepul(
+        @Header("Authorization") token: String,
+        @Path("id") id: String,
+        @Field("contact") contact: String,
+        @Field("location") location: String,
+        @Field("description") description: String,
+        @Field("lat") lat: Double?,
+        @Field("lon") lon: Double?,
+    ): Call<DataItem>
+
+    @DELETE("/pengepul/{id}")
+    fun deletePengepul(
+
+        @Path("id") id: String
+    ): Call<DataItem>
 }

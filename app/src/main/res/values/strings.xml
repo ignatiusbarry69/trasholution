@@ -12,8 +12,12 @@
     <string name="name">Name</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="welcomeLottie">Welcome to Trasholution,
-your daily waste solution and recycling advisor</string>
+    <string name="titleWelcome">WELCOME</string>
+    <string name="titleHow">HOW IT WORKS</string>
+    <string name="titleCraftAndConnect">CRAFT AND CONNECT</string>
+    <string name="contentWelcome">Welcome to Trasholution! Your daily waste advisor. This application is designed to help you identify different types of waste and provide useful advice on how to handle them responsibly. By using this app, you can contribute to a cleaner environment and make informed decisions about waste disposal. Lets get started!</string>
+    <string name="contentHow">With Trasholution, you can easily identify different types of waste materials. Simply take a photo of the item and our advanced image recognition technology will analyze it to determine the appropriate category. Whether its plastic, paper, glass, electronic or organic waste, we have got you covered.</string>
+    <string name="contentCraftAndConnect">Trasholution goes beyond waste identification. We inspire creativity by offering craft ideas using everyday waste items. Learn how to transform discarded materials into beautiful and useful creations. Trasholution also connects you with local waste collectors, making responsible waste disposal easier than ever.  Together, we can make a significant impact on the environment and build a sustainable future. Lets turn trash into treasure!</string>
     <string name="logout">logout</string>
     <string name="retry">RETRY</string>
     <string name="username">username</string>
@@ -47,4 +51,10 @@ your daily waste solution and recycling advisor</string>
     <string name="no_handling">Sorry, we don\'t have data about this waste</string>
     <string name="fail_getlocation">failed to retrieve location</string>
     <string name="need_location">need permission to access location</string>
+    <string name="add_article">ADD ARTICLE</string>
+    <string name="join_collector">Join As a Collector</string>
+    <string name="update_collector">Update Collector Status</string>
+    <string name="update_pengepul">Update Pengepul</string>
+    <string name="alert">Alert!</string>
+    <string name="yousure">You Sure Want to Log Out?</string>
 </resources>

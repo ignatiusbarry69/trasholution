@@ -10,28 +10,45 @@
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/onBoardLottie"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="30dp"
+        android:layout_height="280dp"
         android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
-        app:lottie_speed="0.25"
-        app:lottie_loop="true"/>
+        app:lottie_loop="true"
+        app:lottie_speed="1.75" />
 
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="158dp"
-        android:layout_height="104dp"
-        android:layout_marginBottom="240dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/tv_title_onboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-black"
+        android:text="WELCOME"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/onBoardLottie"
+        app:layout_constraintTop_toBottomOf="@id/onBoardLottie" />
+
+    <TextView
+        android:id="@+id/tv_content_onboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/lorem"
+        android:textSize="13sp"
+        android:justificationMode="inter_word"
+        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_onboard" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
