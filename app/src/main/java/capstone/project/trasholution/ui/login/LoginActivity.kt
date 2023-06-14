@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
     var PREF_EMAIL = "email"
     var PREF_PASSWORD = "password"
     var PREF_TOKEN = "token"
-    var PREF_USERNAME = ""
+    var PREF_USERNAME = "username"
 
     var email = ""
     var password = ""
@@ -111,7 +111,7 @@ class LoginActivity : AppCompatActivity() {
                         editor.putString(PREF_EMAIL, binding.edtLoginEmail.text.toString())
                         editor.putString(PREF_PASSWORD, binding.edtLoginPassword.text.toString())
                         editor.putString(PREF_TOKEN, responseBody.data.token)
-                        editor.putString(PREF_USERNAME, "Paijo")
+                        editor.putString(PREF_USERNAME, responseBody.data.username)
                         editor.apply()
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

@@ -67,10 +67,9 @@ interface ApiService {
     ): Call<PengepulResponse>
 
     @FormUrlEncoded
-    @PUT("/pengepul/{id}")
+    @PUT("/pengepul/update")
     fun updatePengepul(
         @Header("Authorization") token: String,
-        @Path("id") id: String,
         @Field("contact") contact: String,
         @Field("location") location: String,
         @Field("description") description: String,
@@ -78,9 +77,8 @@ interface ApiService {
         @Field("lon") lon: Double?,
     ): Call<DataItem>
 
-    @DELETE("/pengepul/{id}")
+    @DELETE("/pengepul/delete")
     fun deletePengepul(
-
-        @Path("id") id: String
+        @Header("Authorization") token: String
     ): Call<DataItem>
 }
