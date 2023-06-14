@@ -51,7 +51,7 @@ class TrasholutionRepository private constructor(
                     if (response.isSuccessful) {
                         val responseBody = response.body()
                         if (responseBody != null && responseBody.data.isNotEmpty()) {
-                            result.value = Result.Success(responseBody.data[0].id)
+                            result.value = Result.Success(responseBody.data[0].username)
                         } else {
                             result.value = Result.Error("error")
                         }

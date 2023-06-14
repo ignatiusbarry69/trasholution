@@ -34,7 +34,6 @@ class UpdatePengepulActivity : AppCompatActivity() {
     private var mlat: Double? = null
     private var mlon: Double? = null
 
-
     private val requestPermissionLauncher =
         registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()
@@ -65,10 +64,11 @@ class UpdatePengepulActivity : AppCompatActivity() {
         ) {
             fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
                 if (location != null) {
-                    mlat = location.latitude
-                    mlon = location.longitude
+                    this.mlat = location.latitude
+                    this.mlon = location.longitude
                 } else {
                     createToast(this@UpdatePengepulActivity, getString(R.string.fail_getlocation))
+
                 }
             }
         } else {
@@ -96,25 +96,27 @@ class UpdatePengepulActivity : AppCompatActivity() {
         intent.getStringExtra(id)
 
         binding.btnAddPengepulSubmit.setOnClickListener {
-            deletePengepul(id)
+            deletePengepul(token)
         }
 
         binding.btnAddPengepulSubmit2.setOnClickListener {
-            updatePengepul(token, id)
+            updatePengepul(token)
         }
 
-        binding.giveLocation.setOnCheckedChangeListener{ _, isChecked ->
+        binding.giveLocation.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
                 getMyLastLocation()
+                createToast(this, "lat : $mlat" )
             } else {
                 mlat = null
                 mlon = null
+                createToast(this, "lat: $mlat")
             }
         }
     }
 
-    private fun deletePengepul(id: String) {
-        val client = ApiConfig.getApiService(token).deletePengepul(id)
+    private fun deletePengepul(token: String) {
+        val client = ApiConfig.getApiService().deletePengepul(token)
         client.enqueue(object : Callback<DataItem> {
             override fun onResponse(call: Call<DataItem>, response: Response<DataItem>) {
                 if (response.isSuccessful) {
@@ -131,19 +133,30 @@ class UpdatePengepulActivity : AppCompatActivity() {
             }
         })
     }
-    private fun updatePengepul(token: String, id: String) {
+    private fun updatePengepul(token: String) {
         val contact = binding.edtAddPengepulContact.text.toString()
         val location = binding.edtAddPengepulLocation.text.toString()
         val description = binding.edtAddPengepulDescription.text.toString()
         val position = binding.giveLocation.isChecked
         var lat : Double? = null
         var lon : Double? = null
-        if (position) {
+
+        if (binding.giveLocation.isChecked) {
+            getMyLastLocation()
             lat = mlat
             lon = mlon
+        } else if (!binding.giveLocation.isChecked) {
+            lat = null
+            lon = null
         }
+//
+//        if (position) {
+//            getMyLastLocation()
+//            lat = mlat
+//            lon = mlon
+//        }
 
-        val client = ApiConfig.getApiService().updatePengepul(token, id, contact, location, description, lat, lon)
+        val client = ApiConfig.getApiService().updatePengepul(token, contact, location, description, mlat, mlon)
         client.enqueue(object : Callback<DataItem> {
             override fun onResponse(call: Call<DataItem>, response: Response<DataItem>) {
                 if (response.isSuccessful) {
@@ -152,8 +165,6 @@ class UpdatePengepulActivity : AppCompatActivity() {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     startActivity(intent)
-                } else {
-
                 }
             }
 

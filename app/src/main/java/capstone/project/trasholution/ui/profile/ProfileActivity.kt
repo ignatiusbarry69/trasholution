@@ -33,7 +33,7 @@ class ProfileActivity : AppCompatActivity() {
     var PREF_LOGIN = "login"
     var PREF_TOKEN = "token"
     var token = ""
-    var username = "Paijo"
+    var username = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +42,8 @@ class ProfileActivity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences(PREF_LOGIN, Context.MODE_PRIVATE)
         token = sharedPreferences.getString(PREF_TOKEN, null)!!
-        username = "Paijo"
+        username = sharedPreferences.getString(PREF_USERNAME, null)!!
+
 
         setupViewModel()
         getData()
@@ -95,7 +96,7 @@ class ProfileActivity : AppCompatActivity() {
                 is Result.Success -> {
                     id = result.data
                     isCollector = true
-//                    binding?.textView4?.text = result.data
+                    binding?.textView4?.text = result.data
                     binding?.buttonJoin?.text = getString(R.string.update_collector)
 
 
