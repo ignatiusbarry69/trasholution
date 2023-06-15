@@ -15,7 +15,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="40dp"
-            android:src="@drawable/ryder_avatar"
+            android:src="@drawable/avatar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -266,5 +266,16 @@
             android:layout_width="match_parent"
             android:layout_height="20dp"
             app:layout_constraintTop_toBottomOf="@id/logoutButton"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar_pengepul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/logoutButton"
+            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

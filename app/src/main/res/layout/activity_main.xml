@@ -36,7 +36,8 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_camera"
+        android:backgroundTint="@color/yellow"
+        android:src="@drawable/ic_baseline_camera_24dp"
         app:layout_anchor="@id/bottomAppBar" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

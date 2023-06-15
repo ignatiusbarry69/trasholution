@@ -9,6 +9,7 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -126,9 +127,11 @@ class UpdatePengepulActivity : AppCompatActivity() {
 
     private fun deletePengepul(token: String) {
         val client = ApiConfig.getApiService().deletePengepul(token)
+        showLoading(true)
         client.enqueue(object : Callback<DataItem> {
             override fun onResponse(call: Call<DataItem>, response: Response<DataItem>) {
                 if (response.isSuccessful) {
+                    showLoading(true)
                     Toast.makeText(
                         this@UpdatePengepulActivity,
                         getString(R.string.collector_deleted),
@@ -142,6 +145,7 @@ class UpdatePengepulActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<DataItem>, t: Throwable) {
+                showLoading(true)
                 Toast.makeText(this@UpdatePengepulActivity, t.message, Toast.LENGTH_SHORT).show()
             }
         })
@@ -154,9 +158,11 @@ class UpdatePengepulActivity : AppCompatActivity() {
 
         val client = ApiConfig.getApiService()
             .updatePengepul(token, contact, location, description)
+        showLoading(true)
         client.enqueue(object : Callback<DataItem> {
             override fun onResponse(call: Call<DataItem>, response: Response<DataItem>) {
                 if (response.isSuccessful) {
+                    showLoading(false)
                     Toast.makeText(
                         this@UpdatePengepulActivity,
                         getString(R.string.update_collector_success),
@@ -170,9 +176,18 @@ class UpdatePengepulActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<DataItem>, t: Throwable) {
+                showLoading(false)
                 Toast.makeText(this@UpdatePengepulActivity, t.message, Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBarPengepul.visibility = View.VISIBLE
+        } else {
+            binding.progressBarPengepul.visibility = View.INVISIBLE
+        }
     }
 
     companion object {

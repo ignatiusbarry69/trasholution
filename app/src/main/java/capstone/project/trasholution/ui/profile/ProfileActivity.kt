@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
@@ -69,12 +70,14 @@ class ProfileActivity : AppCompatActivity() {
         binding?.btnAddPengepul?.setOnClickListener {
             if (isCollector) {
                 val setup = ApiConfig.getApiService().getMyData(token, username)
+                showLoading(true)
                 setup.enqueue(object : Callback<PengepulResponse> {
                     override fun onResponse(
                         call: Call<PengepulResponse>,
                         response: Response<PengepulResponse>
                     ) {
                         if (response.isSuccessful) {
+                            showLoading(false)
                             val responseBody = response.body()
                             if (responseBody != null) {
                                 val intent = Intent(this@ProfileActivity, UpdatePengepulActivity::class.java)
@@ -89,6 +92,7 @@ class ProfileActivity : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<PengepulResponse>, t: Throwable) {
+                        showLoading(false)
                         Toast.makeText(this@ProfileActivity, t.message, Toast.LENGTH_SHORT).show()
                     }
                 })
@@ -144,6 +148,14 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding?.progressBarPengepul?.visibility = View.VISIBLE
+        } else {
+            binding?.progressBarPengepul?.visibility = View.INVISIBLE
+        }
     }
 
     private fun setupViewModel() {

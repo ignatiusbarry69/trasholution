@@ -22,9 +22,6 @@
             android:name=".ui.about.AboutActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.profile.TempProfile"
-            android:exported="false" />
-        <activity
             android:name=".ui.mainmenu.collector.UpdatePengepulActivity"
             android:exported="false" />
         <activity
@@ -57,6 +54,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.mainmenu.article.DetailArticleActivity"
+            android:parentActivityName=".ui.mainmenu.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

@@ -101,4 +101,6 @@
     <string name="invalid_email_pass">Invalid email or password</string>
     <string name="start">Start</string>
     <string name="language">Language</string>
+    <string name="emailalreadyexist">Username or Email already exist!</string>
+    <string name="waste_type">Type of waste</string>
 </resources>
