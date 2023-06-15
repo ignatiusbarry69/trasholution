@@ -17,7 +17,7 @@
         app:layout_constraintTop_toBottomOf="@+id/previewImageView" />
 
     <ImageView
-        android:contentDescription="placeholder image"
+        android:contentDescription="@string/placeholder_image"
         android:id="@+id/previewImageView"
         android:layout_height="371dp"
         android:layout_width="379dp"
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
-        android:text="Your waste categorized as.."
+        android:text="@string/kategori_sampah"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
         android:id="@+id/prediction"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="prediksi"
+        tools:text="prediksi"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text" />
@@ -60,7 +60,7 @@
             android:id="@+id/desc"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="deskripsi"
+            android:text="@string/deskripsi"
             android:textSize="18sp" />
     </ScrollView>
 
@@ -68,7 +68,7 @@
         android:id="@+id/predictBtn"
         android:layout_width="wrap_content"
         android:layout_height="?actionBarSize"
-        android:text="Back"
+        android:text="@string/back"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

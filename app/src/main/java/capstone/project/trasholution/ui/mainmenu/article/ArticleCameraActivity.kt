@@ -14,26 +14,27 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import capstone.project.trasholution.R
+import capstone.project.trasholution.databinding.ActivityArticleCameraBinding
 import capstone.project.trasholution.databinding.ActivityCameraBinding
 import createFile
 
 class ArticleCameraActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityCameraBinding
+    private lateinit var binding: ActivityArticleCameraBinding
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCameraBinding.inflate(layoutInflater)
+        binding = ActivityArticleCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.captureImage.setOnClickListener { takePhoto() }
-//        binding.switchCamera.setOnClickListener {
-//            cameraSelector =
-//                if (cameraSelector.equals(CameraSelector.DEFAULT_BACK_CAMERA)) CameraSelector.DEFAULT_FRONT_CAMERA
-//                else CameraSelector.DEFAULT_BACK_CAMERA
-//            startCamera()
-//        }
+        binding.switchCamera.setOnClickListener {
+            cameraSelector =
+                if (cameraSelector.equals(CameraSelector.DEFAULT_BACK_CAMERA)) CameraSelector.DEFAULT_FRONT_CAMERA
+                else CameraSelector.DEFAULT_BACK_CAMERA
+            startCamera()
+        }
     }
 
     public override fun onResume() {
@@ -64,7 +65,7 @@ class ArticleCameraActivity : AppCompatActivity() {
                     imageCapture
                 )
             } catch (exc: Exception) {
-                Toast.makeText(this@ArticleCameraActivity, "Failed to launch camera", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ArticleCameraActivity, getString(R.string.failed_to_start_camera), Toast.LENGTH_SHORT).show()
             }
         }, ContextCompat.getMainExecutor(this))
     }

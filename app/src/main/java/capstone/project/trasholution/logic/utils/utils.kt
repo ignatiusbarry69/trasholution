@@ -17,12 +17,22 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.min
+import java.util.Random
+
+val random = Random()
+
+fun rand(from: Int, to: Int) : Int {
+    return random.nextInt(to - from) + from
+}
 
 private const val FILENAME_FORMAT = "dd-MMM-yyyy"
 val timeStamp: String = SimpleDateFormat(
     FILENAME_FORMAT,
     Locale.US
 ).format(System.currentTimeMillis())
+
+
+
 
 fun TextView.setLocalDateFormat(timestamp: String) {
     val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
@@ -40,6 +50,7 @@ fun createToast(context: Context, message: String){
 }
 
 fun createFile(application: Application): File {
+    val uniquename = rand(1,90000000).toString()
     val mediaDir = application.externalMediaDirs.firstOrNull()?.let {
         File(it, application.resources.getString(R.string.app_name)).apply { mkdirs() }
     }
@@ -48,7 +59,7 @@ fun createFile(application: Application): File {
         mediaDir != null && mediaDir.exists()
     ) mediaDir else application.filesDir
 
-    return File(outputDirectory, "$timeStamp.jpg")
+    return File(outputDirectory, "$timeStamp$uniquename.jpg")
 }
 
 
@@ -98,9 +109,9 @@ fun rotateBitmap(bitmap: Bitmap, isBackCamera: Boolean = false): Bitmap {
 
 fun cropFile(file: File){
     val bitmap = BitmapFactory.decodeFile(file.path)
-    val cropSize = min(bitmap.width, bitmap.height)
-    val startX = ((bitmap.width - cropSize) / 2)
-    val startY = ((bitmap.height - cropSize) / 2)
+    val cropSize = min(bitmap.width, bitmap.height)/2
+    val startX = ((bitmap.width - cropSize)/2)
+    val startY = ((bitmap.height - cropSize)/2)
     val result = Bitmap.createBitmap(bitmap, startX, startY, cropSize, cropSize)
     result.compress(Bitmap.CompressFormat.JPEG, 100, FileOutputStream(file))
 }

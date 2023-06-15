@@ -53,8 +53,8 @@ class OnboardActivity : AppCompatActivity() {
         //tab layout
         val tabs: TabLayout = binding!!.tabs
 
-        binding?.btnLeft?.text = "Skip"
-        binding?.btnRight?.text = "Next"
+        binding?.btnLeft?.text = getString(R.string.skip)
+        binding?.btnRight?.text = getString(R.string.next)
         setupCircleFirst()
 
 
@@ -69,19 +69,19 @@ class OnboardActivity : AppCompatActivity() {
                 // Update button behavior based on the selected tab position
                 if (position == 0) {
                     setupCircleSecond()
-                    binding?.btnLeft?.text = "Skip"
-                    binding?.btnRight?.text = "Next"
+                    binding?.btnLeft?.text = getString(R.string.skip)
+                    binding?.btnRight?.text = getString(R.string.next)
                     binding?.circleOne?.setBackgroundResource(R.drawable.circle_shape_lime)
 
                 } else if (position == 1) {
                     setupCircleSecond()
-                    binding?.btnLeft?.text = "Back"
-                    binding?.btnRight?.text = "Next"
+                    binding?.btnLeft?.text = getString(R.string.back)
+                    binding?.btnRight?.text = getString(R.string.next)
                     binding?.circleTwo?.setBackgroundResource(R.drawable.circle_shape_lime)
                 } else {
                     setupCircleSecond()
-                    binding?.btnLeft?.text = "Back"
-                    binding?.btnRight?.text = "Start"
+                    binding?.btnLeft?.text = getString(R.string.back)
+                    binding?.btnRight?.text = getString(R.string.start)
                     binding?.circleThree?.setBackgroundResource(R.drawable.circle_shape_lime)
                 }
             }
@@ -98,7 +98,7 @@ class OnboardActivity : AppCompatActivity() {
         // Set click listeners for the buttons
         binding?.btnLeft?.setOnClickListener {
 
-            if (binding?.btnLeft?.text == "Skip") {
+            if (binding?.btnLeft?.text == getString(R.string.skip)) {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()

@@ -19,10 +19,8 @@ import androidx.core.content.ContextCompat
 import capstone.project.trasholution.R
 import capstone.project.trasholution.databinding.ActivityAddArticleBinding
 import capstone.project.trasholution.logic.repository.responses.ArticleAddItem
-//import capstone.project.trasholution.logic.repository.responses.ArticleItem
 import capstone.project.trasholution.logic.repository.retrofit.ApiConfig
 import capstone.project.trasholution.ui.mainmenu.MainActivity
-import capstone.project.trasholution.ui.mainmenu.prediction.CameraActivity
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -38,7 +36,7 @@ import java.io.File
 class AddArticleActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddArticleBinding
-    private var getFile: File? = null
+    private var getFilee: File? = null
     lateinit var sharedPreferences: SharedPreferences
 
     var PREF_LOGIN = "login"
@@ -54,7 +52,7 @@ class AddArticleActivity : AppCompatActivity() {
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (!allPermissionsGranted()) {
                 Toast.makeText(
-                    this, "Don't get a permission",
+                    this, getString(R.string.have_no_permission),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -98,13 +96,13 @@ class AddArticleActivity : AppCompatActivity() {
         val intent = Intent()
         intent.action = Intent.ACTION_GET_CONTENT
         intent.type = "image/*"
-        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        val chooser = Intent.createChooser(intent, getString(R.string.choose_picture))
         launcherIntentGallery.launch(chooser)
     }
 
     private fun uploadImage() {
-        if (getFile != null) {
-            val file = reduceFileImage(getFile as File)
+        if (getFilee != null) {
+            val file = reduceFileImage(getFilee as File)
             val edtDescription = binding.edtAddArticleDescription.text.toString()
             val edtTitle = binding.edtAddArticleTitle.text.toString()
             val edtType = binding.edtAddArticleType.text.toString()
@@ -122,21 +120,20 @@ class AddArticleActivity : AppCompatActivity() {
             apiService.enqueue(object : Callback<ArticleAddItem> {
                 override fun onResponse(call: Call<ArticleAddItem>, response: Response<ArticleAddItem>) {
                     if (response.isSuccessful) {
-                        Toast.makeText(this@AddArticleActivity, "Article Added Successfully", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@AddArticleActivity, getString(R.string.artikel_up_succ), Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@AddArticleActivity, MainActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         startActivity(intent)
                         finish()
                     } else {
-                        Log.d("TAGadderr", response.message())
-                        Toast.makeText(this@AddArticleActivity, "Failed to Add Article", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@AddArticleActivity, getString(R.string.add_article_fail), Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<ArticleAddItem>, t: Throwable) {
                     Log.d("TAGadderr", t.toString())
-                    Toast.makeText(this@AddArticleActivity, "Please select a file first", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AddArticleActivity, getString(R.string.select_file), Toast.LENGTH_SHORT).show()
                 }
             })
         }
@@ -157,7 +154,7 @@ class AddArticleActivity : AppCompatActivity() {
 
             myFile?.let { file ->
                 rotateFile(file, isBackCamera)
-                getFile = file
+                getFilee = file
                 binding.previewImageView.setImageBitmap(BitmapFactory.decodeFile(file.path))
             }
         }
@@ -170,7 +167,7 @@ class AddArticleActivity : AppCompatActivity() {
             val selectedImg = result.data?.data as Uri
             selectedImg.let { uri ->
                 val myFile = uriToFile(uri, this@AddArticleActivity)
-                getFile = myFile
+                getFilee = myFile
                 binding.previewImageView.setImageURI(uri)
             }
         }

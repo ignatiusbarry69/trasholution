@@ -87,7 +87,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:text="Type of waste"
+            android:text="@string/type_of_waste"
             app:layout_constraintTop_toBottomOf="@id/til_add_article_title" />
 
         <com.google.android.material.textfield.TextInputLayout

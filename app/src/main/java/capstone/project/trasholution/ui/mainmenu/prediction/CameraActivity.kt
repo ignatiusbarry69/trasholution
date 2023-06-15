@@ -19,6 +19,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import capstone.project.trasholution.R
 import capstone.project.trasholution.databinding.ActivityCameraBinding
 import capstone.project.trasholution.ui.ViewModelFactory
 import capstone.project.trasholution.ui.mainmenu.MainActivity
@@ -111,7 +112,7 @@ class CameraActivity : AppCompatActivity() {
                 override fun onError(exc: ImageCaptureException) {
                     Toast.makeText(
                         this@CameraActivity,
-                        "Gagal mengambil gambar.",
+                        getString(R.string.failed_to_get_image),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -119,12 +120,6 @@ class CameraActivity : AppCompatActivity() {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     cropFile(photoFile)
                     val file = reduceFileImage(photoFile)
-//                    val requestImageFile = file.asRequestBody("image/*".toMediaTypeOrNull())
-//                    val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-//                        "photo",
-//                        file.name,
-//                        requestImageFile
-//                    )
                     val goIntent = Intent(this@CameraActivity, PredictAndSolutionActivity::class.java)
                     goIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                     goIntent.putExtra(PredictAndSolutionActivity.PICTURE, file)
@@ -134,29 +129,6 @@ class CameraActivity : AppCompatActivity() {
                     )
                     startActivity(goIntent)
                     finish()
-//                    mainViewModel.predict(imageMultipart).observe(this@CameraActivity) { result ->
-//                        when (result) {
-//                            is Result.Loading -> {
-//                                showLoading(true, binding.progressBar)
-//                            }
-//                            is Result.Success -> {
-//                                showLoading(false, binding.progressBar)
-//                                val predictedValue = result.data
-//                                goIntent.putExtra(PredictAndSolutionActivity.PREDICTED, predictedValue)
-//                                goIntent.putExtra(PredictAndSolutionActivity.PICTURE, file)
-//                                goIntent.putExtra(
-//                                    PredictAndSolutionActivity.ISBACK_CAMERA,
-//                                    cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
-//                                )
-//                                startActivity(goIntent)
-//                                finish()
-//                            }
-//                            is Result.Error -> {
-//                                showLoading(false, binding.progressBar)
-//                                createToast(this@CameraActivity,"error su")
-//                            }
-//                        }
-//                    }
                 }
 
             }
@@ -190,7 +162,7 @@ class CameraActivity : AppCompatActivity() {
             } catch (exc: Exception) {
                 Toast.makeText(
                     this@CameraActivity,
-                    "Gagal memunculkan kamera.",
+                    getString(R.string.failed_to_start_camera),
                     Toast.LENGTH_SHORT
                 ).show()
             }

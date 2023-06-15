@@ -120,7 +120,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                 } else {
                     showLoading(false)
-                    Toast.makeText(this@LoginActivity, "Invalid email or password", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, getString(R.string.invalid_email_pass), Toast.LENGTH_SHORT).show()
                 }
             }
 

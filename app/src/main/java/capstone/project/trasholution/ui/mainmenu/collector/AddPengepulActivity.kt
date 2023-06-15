@@ -127,7 +127,7 @@ class AddPengepulActivity : AppCompatActivity() {
         client.enqueue(object : Callback<DataItem> {
             override fun onResponse(call: Call<DataItem>, response: Response<DataItem>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@AddPengepulActivity, "Berhasil Tambah Pengepul", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AddPengepulActivity, getString(R.string.collector_add_success), Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@AddPengepulActivity, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -143,9 +143,4 @@ class AddPengepulActivity : AppCompatActivity() {
         })
     }
 
-//    companion object {
-//        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
-//            Manifest.permission.ACCESS_COARSE_LOCATION)
-//        private const val REQUEST_CODE_PERMISSIONS = 10
-//    }
 }

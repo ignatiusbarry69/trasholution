@@ -107,7 +107,7 @@ class ProfileActivity : AppCompatActivity() {
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
             editor.clear()
             editor.apply()
-            Toast.makeText(this@ProfileActivity, "Logout Successful", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@ProfileActivity, getString(R.string.logout_success), Toast.LENGTH_SHORT).show()
             val intent = Intent(this@ProfileActivity, LoginActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)

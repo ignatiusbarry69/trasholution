@@ -13,12 +13,12 @@ class PengepulAdapter: PagingDataAdapter<DataItem, PengepulAdapter.MyViewHolder>
         fun bind(pengepulUser: DataItem) {
             with(binding) {
                 userName.text = pengepulUser.username
-                ads.text = pengepulUser.contact
+                ads.text = pengepulUser.description
+                contact.text = pengepulUser.contact
                 alamat.text = pengepulUser.location
             }
         }
     }
-//    private lateinit var onItemClickCallback: OnItemClickCallback
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemPengepulBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -37,10 +37,6 @@ class PengepulAdapter: PagingDataAdapter<DataItem, PengepulAdapter.MyViewHolder>
     }
 
 
-
-//    interface OnItemClickCallback {
-//        fun onItemClicked(data: DataItem)
-//    }
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DataItem>() {
