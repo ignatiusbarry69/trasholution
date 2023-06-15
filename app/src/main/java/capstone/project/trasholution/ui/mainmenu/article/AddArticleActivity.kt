@@ -19,10 +19,8 @@ import androidx.core.content.ContextCompat
 import capstone.project.trasholution.R
 import capstone.project.trasholution.databinding.ActivityAddArticleBinding
 import capstone.project.trasholution.logic.repository.responses.ArticleAddItem
-//import capstone.project.trasholution.logic.repository.responses.ArticleItem
 import capstone.project.trasholution.logic.repository.retrofit.ApiConfig
 import capstone.project.trasholution.ui.mainmenu.MainActivity
-import capstone.project.trasholution.ui.mainmenu.prediction.CameraActivity
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -38,7 +36,7 @@ import java.io.File
 class AddArticleActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddArticleBinding
-    private var getFile: File? = null
+    private var getFilee: File? = null
     lateinit var sharedPreferences: SharedPreferences
 
     var PREF_LOGIN = "login"
@@ -103,8 +101,8 @@ class AddArticleActivity : AppCompatActivity() {
     }
 
     private fun uploadImage() {
-        if (getFile != null) {
-            val file = reduceFileImage(getFile as File)
+        if (getFilee != null) {
+            val file = reduceFileImage(getFilee as File)
             val edtDescription = binding.edtAddArticleDescription.text.toString()
             val edtTitle = binding.edtAddArticleTitle.text.toString()
             val edtType = binding.edtAddArticleType.text.toString()
@@ -157,7 +155,7 @@ class AddArticleActivity : AppCompatActivity() {
 
             myFile?.let { file ->
                 rotateFile(file, isBackCamera)
-                getFile = file
+                getFilee = file
                 binding.previewImageView.setImageBitmap(BitmapFactory.decodeFile(file.path))
             }
         }
@@ -170,7 +168,7 @@ class AddArticleActivity : AppCompatActivity() {
             val selectedImg = result.data?.data as Uri
             selectedImg.let { uri ->
                 val myFile = uriToFile(uri, this@AddArticleActivity)
-                getFile = myFile
+                getFilee = myFile
                 binding.previewImageView.setImageURI(uri)
             }
         }

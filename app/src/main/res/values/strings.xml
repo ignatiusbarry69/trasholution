@@ -70,4 +70,5 @@
     <string name="key_features_3">Connecting Individuals with Waste Collectors. Trasholution serves as a bridge between individuals and waste collectors. Our app provides a dedicated feature where waste collectors can register their contact information, making it convenient for users to connect with them for responsible waste disposal. By facilitating this connection, we ensure that waste is properly managed and contribute to a cleaner, greener future.</string>
     <string name="the_trasholution_team">The Trasholution Team.</string>
     <string name="select_type_of_waste">Select type of waste</string>
+    <string name="by">By: %s</string>
 </resources>

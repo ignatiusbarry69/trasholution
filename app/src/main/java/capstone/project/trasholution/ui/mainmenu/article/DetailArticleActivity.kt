@@ -40,6 +40,7 @@ class DetailArticleActivity : AppCompatActivity() {
             tvTypeWasteContent.text = typeWaste
             tvArticleDate.text = resources.getString(R.string.uploadedAt, formattedDate)
             tvDescriptionContent.text = data?.content
+            tvArticleUsername.text = resources.getString(R.string.by, data?.username)
         }
     }
 

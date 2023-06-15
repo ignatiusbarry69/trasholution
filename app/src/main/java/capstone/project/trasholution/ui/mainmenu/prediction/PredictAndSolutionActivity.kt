@@ -100,6 +100,7 @@ class PredictAndSolutionActivity : AppCompatActivity() {
                     binding?.prediction?.visibility = View.VISIBLE
                     binding?.predictBtn?.isEnabled = true
                     binding?.predictBtn?.text = getString(R.string.find_more)
+                    binding?.predictBtn?.alpha = 1.0f
 
                     binding?.desc?.text = when(predictedValue){
                         "Electronic Waste" -> getString(R.string.ewaste_handling)
