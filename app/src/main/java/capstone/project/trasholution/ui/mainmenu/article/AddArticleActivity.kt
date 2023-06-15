@@ -11,10 +11,12 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import capstone.project.trasholution.R
 import capstone.project.trasholution.databinding.ActivityAddArticleBinding
 import capstone.project.trasholution.logic.repository.responses.ArticleAddItem
 //import capstone.project.trasholution.logic.repository.responses.ArticleItem
@@ -70,6 +72,10 @@ class AddArticleActivity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences(PREF_LOGIN, Context.MODE_PRIVATE)
         token = sharedPreferences.getString(PREF_TOKEN, null)!!
+
+        val items = listOf("Plastic", "Electronic", "Textile", "Metal", "Glass")
+        val adapter = ArrayAdapter(this, R.layout.list_dropdown, items)
+        binding.edtAddArticleType.setAdapter(adapter)
 
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(

@@ -8,12 +8,15 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import capstone.project.trasholution.R
 import capstone.project.trasholution.databinding.ActivityUpdatePengepulBinding
 import capstone.project.trasholution.logic.repository.responses.DataItem
+import capstone.project.trasholution.logic.repository.responses.PengepulResponse
 import capstone.project.trasholution.logic.repository.retrofit.ApiConfig
 import capstone.project.trasholution.ui.mainmenu.MainActivity
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -29,7 +32,9 @@ class UpdatePengepulActivity : AppCompatActivity() {
     lateinit var sharedPreferences: SharedPreferences
     var PREF_LOGIN = "login"
     var PREF_TOKEN = "token"
+    var PREF_USERNAME = "username"
     var token = ""
+    var username = ""
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var mlat: Double? = null
     private var mlon: Double? = null
@@ -50,13 +55,51 @@ class UpdatePengepulActivity : AppCompatActivity() {
             }
         }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityUpdatePengepulBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        supportActionBar?.hide()
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        sharedPreferences = getSharedPreferences(PREF_LOGIN, Context.MODE_PRIVATE)
+        token = sharedPreferences.getString(PREF_TOKEN, null)!!
+        username = sharedPreferences.getString(PREF_USERNAME, null)!!
+
+//        token = "Bearer $token"
+
+        intent.getStringExtra(id)
+        intent.getStringExtra(username)
+
+        setupAutoFill()
+
+        binding.btnDeletePengepul.setOnClickListener {
+            deletePengepul(token)
+        }
+
+        binding.btnUpdatePengepul.setOnClickListener {
+            updatePengepul(token)
+
+        }
+
+    }
+
+    private fun setupAutoFill() {
+        val afContact = intent.getStringExtra("afContact")
+        val afLocation = intent.getStringExtra("afLocation")
+        val afDescription = intent.getStringExtra("afDescription")
+
+        binding.edtAddPengepulContact.setText(afContact.toString(), TextView.BufferType.EDITABLE)
+        binding.edtAddPengepulLocation.setText(afLocation.toString(), TextView.BufferType.EDITABLE)
+        binding.edtAddPengepulDescription.setText(afDescription.toString(), TextView.BufferType.EDITABLE)
+    }
     private fun checkPermission(permission: String): Boolean {
         return ContextCompat.checkSelfPermission(
             this,
             permission
         ) == PackageManager.PERMISSION_GRANTED
     }
-
 
     private fun getMyLastLocation() {
         if (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) &&
@@ -81,46 +124,16 @@ class UpdatePengepulActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityUpdatePengepulBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        supportActionBar?.hide()
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
-        sharedPreferences = getSharedPreferences(PREF_LOGIN, Context.MODE_PRIVATE)
-        token = sharedPreferences.getString(PREF_TOKEN, null)!!
-//        token = "Bearer $token"
-
-        intent.getStringExtra(id)
-
-        binding.btnAddPengepulSubmit.setOnClickListener {
-            deletePengepul(token)
-        }
-
-        binding.btnAddPengepulSubmit2.setOnClickListener {
-            updatePengepul(token)
-        }
-
-        binding.giveLocation.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked){
-                getMyLastLocation()
-                createToast(this, "lat : $mlat" )
-            } else {
-                mlat = null
-                mlon = null
-                createToast(this, "lat: $mlat")
-            }
-        }
-    }
-
     private fun deletePengepul(token: String) {
         val client = ApiConfig.getApiService().deletePengepul(token)
         client.enqueue(object : Callback<DataItem> {
             override fun onResponse(call: Call<DataItem>, response: Response<DataItem>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@UpdatePengepulActivity, "Berhasil Delete Pengepul", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@UpdatePengepulActivity,
+                        "Berhasil Delete Pengepul",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     val intent = Intent(this@UpdatePengepulActivity, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -133,34 +146,22 @@ class UpdatePengepulActivity : AppCompatActivity() {
             }
         })
     }
+
     private fun updatePengepul(token: String) {
         val contact = binding.edtAddPengepulContact.text.toString()
         val location = binding.edtAddPengepulLocation.text.toString()
         val description = binding.edtAddPengepulDescription.text.toString()
-        val position = binding.giveLocation.isChecked
-        var lat : Double? = null
-        var lon : Double? = null
 
-        if (binding.giveLocation.isChecked) {
-            getMyLastLocation()
-            lat = mlat
-            lon = mlon
-        } else if (!binding.giveLocation.isChecked) {
-            lat = null
-            lon = null
-        }
-//
-//        if (position) {
-//            getMyLastLocation()
-//            lat = mlat
-//            lon = mlon
-//        }
-
-        val client = ApiConfig.getApiService().updatePengepul(token, contact, location, description, mlat, mlon)
+        val client = ApiConfig.getApiService()
+            .updatePengepul(token, contact, location, description)
         client.enqueue(object : Callback<DataItem> {
             override fun onResponse(call: Call<DataItem>, response: Response<DataItem>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@UpdatePengepulActivity, "Berhasil Update Pengepul", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@UpdatePengepulActivity,
+                        "Berhasil Update Pengepul",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     val intent = Intent(this@UpdatePengepulActivity, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -180,7 +181,7 @@ class UpdatePengepulActivity : AppCompatActivity() {
 //        private const val REQUEST_CODE_PERMISSIONS = 10
 //    }
 
-    companion object{
+    companion object {
         const val id = "id"
     }
 }

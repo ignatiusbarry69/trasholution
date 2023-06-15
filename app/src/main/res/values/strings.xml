@@ -24,7 +24,6 @@
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="created_date">created date</string>
     <string name="processed_waste">waste idea</string>
-
     <string name="uploadedAt">Uploaded at: %s</string>
     <string name="desc">Description:\n%s</string>
     <string name="pengepul_list">WASTE COLLECTORS</string>
@@ -53,8 +52,22 @@
     <string name="need_location">need permission to access location</string>
     <string name="add_article">ADD ARTICLE</string>
     <string name="join_collector">Join As a Collector</string>
-    <string name="update_collector">Update Collector Status</string>
+    <string name="update_collector">Update Collector</string>
     <string name="update_pengepul">Update Pengepul</string>
     <string name="alert">Alert!</string>
     <string name="yousure">You Sure Want to Log Out?</string>
+    <string name="waste_identification_and_advisor">WASTE IDENTIFICATION AND ADVISOR</string>
+    <string name="waste_companion">WASTE COMPANION</string>
+    <string name="sustainable_living">SUSTAINABLE LIVING</string>
+    <string name="contentAbout1">At Trasholution, we are dedicated to revolutionizing waste management and empowering individuals to make a positive impact on the environment. Our Android application is designed to simplify waste identification and provide valuable recycling advice, while also fostering a community of creative recycling enthusiasts.</string>
+    <string name="our_mission">Our Mission:</string>
+    <string name="about_closing1">Join the Trasholution and unlock the potential of waste. Together, we can simplify waste identification, inspire creative repurposing, and foster connections between individuals and waste collectors.</string>
+    <string name="about_closing2">We value your feedback and suggestions. If you have any questions or ideas on how we can improve our application, please dont hesitate to reach out to us. Thank you for choosing Trasholution!</string>
+    <string name="our_mission_content">to make waste identification and recycling easier, while also promoting the creative repurposing of waste materials. We believe waste has the potential to become a valuable resource, and we aim to connect individuals with waste collectors to facilitate responsible disposal and encourage the creation of useful items from waste.</string>
+    <string name="key_features_of_trasholution">Key Features of Trasholution:</string>
+    <string name="key_features_1">Waste Identification Made Easy. Trasholution makes waste identification a breeze using your smartphones camera. Our advanced technology quickly analyzes captured images and provides accurate information about the recyclability of the waste item. With just a few taps, you can determine the best way to dispose of the waste and contribute to a cleaner environment.</string>
+    <string name="key_features_2">Creative Repurposing Hub. At Trasholution, we believe in the creative potential of waste materials. Our platform features a vibrant community of recyclers who share their ideas, projects, and tutorials on transforming waste into useful items. Explore innovative repurposing ideas, step-by-step guides, and success stories that will inspire you to turn waste into valuable creations.</string>
+    <string name="key_features_3">Connecting Individuals with Waste Collectors. Trasholution serves as a bridge between individuals and waste collectors. Our app provides a dedicated feature where waste collectors can register their contact information, making it convenient for users to connect with them for responsible waste disposal. By facilitating this connection, we ensure that waste is properly managed and contribute to a cleaner, greener future.</string>
+    <string name="the_trasholution_team">The Trasholution Team.</string>
+    <string name="select_type_of_waste">Select type of waste</string>
 </resources>

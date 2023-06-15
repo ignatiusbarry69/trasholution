@@ -117,11 +117,10 @@ class LoginActivity : AppCompatActivity() {
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         startActivity(intent)
-
                     }
                 } else {
                     showLoading(false)
-                    Toast.makeText(this@LoginActivity, response.message(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, "Invalid email or password", Toast.LENGTH_SHORT).show()
                 }
             }
 

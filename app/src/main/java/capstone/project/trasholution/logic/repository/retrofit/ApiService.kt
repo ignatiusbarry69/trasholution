@@ -66,6 +66,11 @@ interface ApiService {
         @Path("username") username: String
     ): Call<PengepulResponse>
 
+    @GET("/pengepul/{username}")
+    fun setupData(
+        @Path("username") username: String
+    ): Call<DataItem>
+
     @FormUrlEncoded
     @PUT("/pengepul/update")
     fun updatePengepul(
@@ -73,8 +78,6 @@ interface ApiService {
         @Field("contact") contact: String,
         @Field("location") location: String,
         @Field("description") description: String,
-        @Field("lat") lat: Double?,
-        @Field("lon") lon: Double?,
     ): Call<DataItem>
 
     @DELETE("/pengepul/delete")
