@@ -19,7 +19,6 @@ class PengepulAdapter: PagingDataAdapter<DataItem, PengepulAdapter.MyViewHolder>
             }
         }
     }
-//    private lateinit var onItemClickCallback: OnItemClickCallback
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemPengepulBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -38,10 +37,6 @@ class PengepulAdapter: PagingDataAdapter<DataItem, PengepulAdapter.MyViewHolder>
     }
 
 
-
-//    interface OnItemClickCallback {
-//        fun onItemClicked(data: DataItem)
-//    }
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DataItem>() {

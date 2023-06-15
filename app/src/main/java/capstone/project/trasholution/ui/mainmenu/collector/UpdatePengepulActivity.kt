@@ -131,7 +131,7 @@ class UpdatePengepulActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     Toast.makeText(
                         this@UpdatePengepulActivity,
-                        "Berhasil Delete Pengepul",
+                        getString(R.string.collector_deleted),
                         Toast.LENGTH_SHORT
                     ).show()
                     val intent = Intent(this@UpdatePengepulActivity, MainActivity::class.java)
@@ -159,7 +159,7 @@ class UpdatePengepulActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     Toast.makeText(
                         this@UpdatePengepulActivity,
-                        "Berhasil Update Pengepul",
+                        getString(R.string.update_collector_success),
                         Toast.LENGTH_SHORT
                     ).show()
                     val intent = Intent(this@UpdatePengepulActivity, MainActivity::class.java)
@@ -174,12 +174,6 @@ class UpdatePengepulActivity : AppCompatActivity() {
             }
         })
     }
-
-//    companion object {
-//        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
-//            Manifest.permission.ACCESS_COARSE_LOCATION)
-//        private const val REQUEST_CODE_PERMISSIONS = 10
-//    }
 
     companion object {
         const val id = "id"

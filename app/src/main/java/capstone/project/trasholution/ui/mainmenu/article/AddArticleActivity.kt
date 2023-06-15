@@ -52,7 +52,7 @@ class AddArticleActivity : AppCompatActivity() {
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (!allPermissionsGranted()) {
                 Toast.makeText(
-                    this, "Don't get a permission",
+                    this, getString(R.string.have_no_permission),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -96,7 +96,7 @@ class AddArticleActivity : AppCompatActivity() {
         val intent = Intent()
         intent.action = Intent.ACTION_GET_CONTENT
         intent.type = "image/*"
-        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        val chooser = Intent.createChooser(intent, getString(R.string.choose_picture))
         launcherIntentGallery.launch(chooser)
     }
 
@@ -120,21 +120,20 @@ class AddArticleActivity : AppCompatActivity() {
             apiService.enqueue(object : Callback<ArticleAddItem> {
                 override fun onResponse(call: Call<ArticleAddItem>, response: Response<ArticleAddItem>) {
                     if (response.isSuccessful) {
-                        Toast.makeText(this@AddArticleActivity, "Article Added Successfully", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@AddArticleActivity, getString(R.string.artikel_up_succ), Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@AddArticleActivity, MainActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         startActivity(intent)
                         finish()
                     } else {
-                        Log.d("TAGadderr", response.message())
-                        Toast.makeText(this@AddArticleActivity, "Failed to Add Article", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@AddArticleActivity, getString(R.string.add_article_fail), Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<ArticleAddItem>, t: Throwable) {
                     Log.d("TAGadderr", t.toString())
-                    Toast.makeText(this@AddArticleActivity, "Please select a file first", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AddArticleActivity, getString(R.string.select_file), Toast.LENGTH_SHORT).show()
                 }
             })
         }

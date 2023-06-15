@@ -27,7 +27,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
-            android:text="WATNO SARI"
+            tools:text="Username"
             android:textSize="30sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
             android:layout_marginTop="25dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Collector"
+            android:text="@string/collector"
             android:textSize="20sp"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +106,7 @@
             android:layout_marginTop="25dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Settings"
+            android:text="@string/setting"
             android:textSize="20sp"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
@@ -147,7 +147,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:fontFamily="sans-serif-medium"
-                        android:text="About" />
+                        android:text="@string/about" />
 
                 </LinearLayout>
 
@@ -199,7 +199,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:fontFamily="sans-serif-medium"
-                        android:text="Log Out"
+                        android:text="@string/log_out"
                         android:textColor="@color/logout_red" />
 
                 </LinearLayout>

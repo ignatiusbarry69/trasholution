@@ -20,7 +20,7 @@ class CollectorFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentCollectorBinding.inflate(inflater, container, false)
         return binding.root
@@ -49,7 +49,6 @@ class CollectorFragment : Fragment() {
             }
         )
         mainViewModel.getListPengepul.observe(requireActivity()) {
-            Log.d("storyilang", (it == null).toString())
             pengepulAdapter.submitData(lifecycle, it)
         }
 

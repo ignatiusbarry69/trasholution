@@ -18,7 +18,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/dm_sans"
-            android:text="Date"
+            android:text="@string/username"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_article_title" />
 
@@ -30,7 +30,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/dm_sans"
-            android:text="Date"
+            android:text="@string/date"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_article_username" />
 
@@ -39,7 +39,7 @@
             android:layout_width="350dp"
             android:layout_height="350dp"
             android:layout_marginTop="24dp"
-            android:contentDescription="story image"
+            android:contentDescription="@string/article_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

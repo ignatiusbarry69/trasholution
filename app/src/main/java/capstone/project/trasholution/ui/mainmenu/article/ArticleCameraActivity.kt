@@ -65,7 +65,7 @@ class ArticleCameraActivity : AppCompatActivity() {
                     imageCapture
                 )
             } catch (exc: Exception) {
-                Toast.makeText(this@ArticleCameraActivity, "Failed to launch camera", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ArticleCameraActivity, getString(R.string.failed_to_start_camera), Toast.LENGTH_SHORT).show()
             }
         }, ContextCompat.getMainExecutor(this))
     }

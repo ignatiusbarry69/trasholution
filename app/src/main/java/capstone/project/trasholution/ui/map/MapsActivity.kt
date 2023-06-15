@@ -103,7 +103,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                         }
                     }
                     is Result.Error -> {
-                        createToast(this@MapsActivity, "Connection Error")
+                        createToast(this@MapsActivity, getString(R.string.connection_error))
                     }
                 }
             }
