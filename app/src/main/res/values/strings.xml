@@ -100,4 +100,5 @@
     <string name="select_file">Please select a file first</string>
     <string name="invalid_email_pass">Invalid email or password</string>
     <string name="start">Start</string>
+    <string name="language">Language</string>
 </resources>
