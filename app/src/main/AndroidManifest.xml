@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Trasholution"
         tools:targetApi="31">
         <activity
+            android:name=".ui.about.AboutActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.profile.TempProfile"
             android:exported="false" />
         <activity
@@ -32,6 +35,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDljHmcBhOMd30svQHO4BrnfGofetcQhNs" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity
             android:name=".ui.map.MapsActivity"

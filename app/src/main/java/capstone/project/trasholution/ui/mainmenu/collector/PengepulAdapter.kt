@@ -13,7 +13,7 @@ class PengepulAdapter: PagingDataAdapter<DataItem, PengepulAdapter.MyViewHolder>
         fun bind(pengepulUser: DataItem) {
             with(binding) {
                 userName.text = pengepulUser.username
-                ads.text = pengepulUser.createDate
+                ads.text = pengepulUser.contact
                 alamat.text = pengepulUser.location
             }
         }

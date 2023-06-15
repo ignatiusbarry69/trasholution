@@ -33,11 +33,13 @@ class DetailArticleActivity : AppCompatActivity() {
             .load(data?.imgUrl)
             .into(binding.ivArticle)
         with(binding){
-            tvName.text = data?.title
+            tvArticleTitle.text = data?.title
             val date = data?.createDate.toString().split("-")
             val formattedDate = "${date[0]}-${date[1]}-${date[2].take(2)}"
-            tvDate.text = resources.getString(R.string.uploadedAt, formattedDate)
-            tvDesc.text = resources.getString(R.string.desc, data?.content)
+            val typeWaste = data?.jenisSampah
+            tvTypeWasteContent.text = typeWaste
+            tvArticleDate.text = resources.getString(R.string.uploadedAt, formattedDate)
+            tvDescriptionContent.text = data?.content
         }
     }
 
