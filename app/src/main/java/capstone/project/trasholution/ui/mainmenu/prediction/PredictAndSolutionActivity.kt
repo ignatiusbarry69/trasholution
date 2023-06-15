@@ -41,6 +41,7 @@ class PredictAndSolutionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPredictAndSolutionBinding.inflate(layoutInflater)
         setContentView(binding?.root)
+        supportActionBar?.hide()
 
         sharedPreferences = getSharedPreferences(PREF_LOGIN, Context.MODE_PRIVATE)
         token = sharedPreferences.getString(PREF_TOKEN, null)!!

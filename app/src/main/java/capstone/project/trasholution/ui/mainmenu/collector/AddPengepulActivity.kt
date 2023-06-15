@@ -10,6 +10,7 @@ import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -111,6 +112,14 @@ class AddPengepulActivity : AppCompatActivity() {
         }
     }
 
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBarPengepul.visibility = View.VISIBLE
+        } else {
+            binding.progressBarPengepul.visibility = View.INVISIBLE
+        }
+    }
+
     private fun addPengepul(token: String) {
         val contact = binding.edtAddPengepulContact.text.toString()
         val location = binding.edtAddPengepulLocation.text.toString()
@@ -124,20 +133,23 @@ class AddPengepulActivity : AppCompatActivity() {
         }
 
         val client = ApiConfig.getApiService(token).addPengepul(contact, location, description, lat, lon)
+        showLoading(true)
         client.enqueue(object : Callback<DataItem> {
             override fun onResponse(call: Call<DataItem>, response: Response<DataItem>) {
                 if (response.isSuccessful) {
+                    showLoading(false)
                     Toast.makeText(this@AddPengepulActivity, getString(R.string.collector_add_success), Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@AddPengepulActivity, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     startActivity(intent)
                 } else {
-
+                    showLoading(false)
                 }
             }
 
             override fun onFailure(call: Call<DataItem>, t: Throwable) {
+                showLoading(false)
                 Toast.makeText(this@AddPengepulActivity, t.message, Toast.LENGTH_SHORT).show()
             }
         })

@@ -98,10 +98,12 @@ class RegisterActivity : AppCompatActivity() {
                         Toast.makeText(this@RegisterActivity, responseBody.message, Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                         startActivity(intent)
+                    } else {
+                        Toast.makeText(this@RegisterActivity, getString(R.string.emailalreadyexist), Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     showLoading(false)
-                    Toast.makeText(this@RegisterActivity, response.message(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, getString(R.string.emailalreadyexist), Toast.LENGTH_SHORT).show()
                 }
             }
 
