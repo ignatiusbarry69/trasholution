@@ -104,5 +104,6 @@
     <string name="language">Bahasa</string>
     <string name="emailalreadyexist">Nama atau Email sudah terdaftar!</string>
     <string name="waste_type">Tipe limbah</string>
+    <string name="no_copied">Nomor telah disalin ke clipboard!</string>
 
 </resources>

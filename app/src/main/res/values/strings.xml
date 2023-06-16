@@ -103,4 +103,5 @@
     <string name="language">Language</string>
     <string name="emailalreadyexist">Username or Email already exist!</string>
     <string name="waste_type">Type of waste</string>
+    <string name="no_copied">Number copied to clipboard!</string>
 </resources>

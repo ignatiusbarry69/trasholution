@@ -1,6 +1,8 @@
 @file:JvmName("utils")
 
 import android.app.Application
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.ContentResolver
 import android.content.Context
 import android.graphics.Bitmap
@@ -11,6 +13,8 @@ import android.os.Environment
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
 import capstone.project.trasholution.R
 import java.io.*
 import java.text.DateFormat
@@ -30,7 +34,6 @@ val timeStamp: String = SimpleDateFormat(
     FILENAME_FORMAT,
     Locale.US
 ).format(System.currentTimeMillis())
-
 
 
 
