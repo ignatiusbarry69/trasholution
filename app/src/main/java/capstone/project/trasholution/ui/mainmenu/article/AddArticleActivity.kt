@@ -71,7 +71,7 @@ class AddArticleActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences(PREF_LOGIN, Context.MODE_PRIVATE)
         token = sharedPreferences.getString(PREF_TOKEN, null)!!
 
-        val items = listOf("Plastic", "Electronic", "Textile", "Metal", "Glass")
+        val items = listOf("Plastic", "Electronic", "Textile", "Metalic Material", "Glass", "Food Scraps", "Organic Vegetation", "Paper")
         val adapter = ArrayAdapter(this, R.layout.list_dropdown, items)
         binding.edtAddArticleType.setAdapter(adapter)
 
