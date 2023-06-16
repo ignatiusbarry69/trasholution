@@ -1,5 +1,6 @@
 # trasholution
 capstone-project-bangkit2023
+- For the main repository you can go to this [repository](https://github.com/ignatiusbarry69/ALL-TRASHOLUTION)
 
 ## About Our App
 
