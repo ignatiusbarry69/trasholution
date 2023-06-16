@@ -49,6 +49,8 @@ class PredictAndSolutionActivity : AppCompatActivity() {
         setupViewModel()
         showLoading(false, binding!!.progressBar)
 
+        binding?.onBoardLottie?.setAnimation(R.raw.animation_scan)
+        binding?.onBoardLottie?.bringToFront()
 
         try{
             val picture = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -87,6 +89,7 @@ class PredictAndSolutionActivity : AppCompatActivity() {
         mainViewModel.predict(myToken, imageMultipart).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
+                    binding?.onBoardLottie?.visibility = View.VISIBLE
                     showLoading(true, binding!!.progressBar)
                     binding?.prediction?.visibility = View.GONE
                     binding?.desc?.visibility = View.GONE
@@ -95,6 +98,7 @@ class PredictAndSolutionActivity : AppCompatActivity() {
                     binding?.predictBtn?.alpha = 0.5f
                 }
                 is Result.Success -> {
+                    binding?.onBoardLottie?.visibility = View.GONE
                     showLoading(false, binding!!.progressBar)
                     val predictedValue = result.data
                     binding?.prediction?.text = predictedValue
@@ -124,6 +128,7 @@ class PredictAndSolutionActivity : AppCompatActivity() {
                     }
                 }
                 is Result.Error -> {
+                    binding?.onBoardLottie?.visibility = View.GONE
                     showLoading(false, binding!!.progressBar)
                     createToast(this, result.error)
                     Log.d("TAGerror", result.error)

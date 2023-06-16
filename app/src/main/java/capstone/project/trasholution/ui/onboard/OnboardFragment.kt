@@ -28,7 +28,6 @@ class OnboardFragment : Fragment() {
             position = it.getInt(POSITION).toString()
         }
         if (this.position == "1") {
-            //ki ngko nggo ngatur isine di statis ning kene wae
             binding?.onBoardLottie?.setAnimation(R.raw.nature_load)
             binding?.tvTitleOnboard?.text = getString(R.string.titleWelcome)
             binding?.tvContentOnboard?.text = getString(R.string.contentWelcome)
