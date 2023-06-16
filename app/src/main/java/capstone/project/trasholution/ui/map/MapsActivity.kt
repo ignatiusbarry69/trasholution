@@ -2,6 +2,8 @@ package capstone.project.trasholution.ui.map
 
 import capstone.project.trasholution.logic.repository.Result
 import android.Manifest
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.content.res.Resources
@@ -11,6 +13,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -60,7 +64,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         setupAction()
     }
 
-    private fun setupView(){
+    private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
@@ -83,22 +87,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun setupAction() {
-        mapsViewModel.getLocation().observe(this@MapsActivity) {result ->
-            if(result != null){
+        mapsViewModel.getLocation().observe(this@MapsActivity) { result ->
+            if (result != null) {
                 when (result) {
                     is Result.Loading -> {
                     }
                     is Result.Success -> {
                         for (pengepul in result.data) {
-                            if (pengepul.lat != null && pengepul.lon != null){
+                            if (pengepul.lat != null && pengepul.lon != null) {
                                 mMap.addMarker(
                                     MarkerOptions()
-                                        .position(LatLng(pengepul.lat!!, pengepul.lon!!))
-                                        .title(pengepul.username)
+                                        .position(LatLng(pengepul.lat, pengepul.lon))
+                                        .title(pengepul.username + " (" + pengepul.contact + ")")
                                         .snippet(pengepul.description)
+
                                 )
-                                //here i want to move the camera here
-//                                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 15f))
+                                mMap.setOnInfoWindowClickListener {
+                                    copyText(pengepul.contact)
+                                }
                             }
                         }
                     }
@@ -108,6 +114,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         }
+    }
+
+
+    fun copyText(string: String) {
+        val clipboardManager =
+            getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+        val clipData = ClipData.newPlainText("label", string)
+        clipboardManager.setPrimaryClip(clipData)
+        Toast.makeText(this, getString(R.string.no_copied), Toast.LENGTH_SHORT).show()
     }
 
     private fun setupFeatureMap() {
